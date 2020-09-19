@@ -1,0 +1,11 @@
+server:
+  port: 80
+
+natappauthtoken: dd42202e80d87cfd
+configuration:
+  appid: wx63994250a4020ae1
+  secret: 2ffdf53824563f4c852270da8eab6ce8
+  questionid: 74f03318534a40f4b4ae83e6920d284f
+  apiPrefix: http://172.16.25.67:8080/
+  localAccessTokenPath: C:\AccessToken\accessToken.txt
+  mainUrl: http://www.jxtfh5.top/

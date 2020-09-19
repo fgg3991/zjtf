@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        .custom-hotspot {
+            height: 25px;
+            width: 50px;
+        }
+        .custom-hotspot>div{
+            height: 25px;
+            width: 25px;
+        }
+        .custom-tooltip-div1{
+            border-right: 1px solid rgba(255,255,255,1);
+        }
+        div.custom-tooltip span {
+            position: absolute;
+            border-radius: 15px;
+            background-color: rgba(0,0,0,0.5);
+            color: #ffffff;
+            text-align: center;
+            max-width: 200px;
+            padding: 5px 10px;
+            margin-left: -220px;
+            cursor: default;
+            font-size: 0.5rem;
+        }
+        .hotspot-choose{
+            position: absolute;
+            z-index: 99;
+            right: 0;
+            margin-right: 1vw;
+        }
+        .hotspot-slot{
+            overflow: visible;
+            width:60px;
+            opacity: 0.7;
+            pointer-events: auto;
+            border-radius: 15px;
+            z-index: 999;
+            text-align: center;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: rgb(233,184,132);
+            background-color: rgba(0,0,0,0.5);
+            transform: scale(0.8,0.7);
+            margin-top: 5px;
+        }
+        .hotspot-action{
+            opacity: 1;
+        }
+        .spot1 span{
+            border-bottom: 1px solid rgb(67, 118, 253);
+        }
+        .spot2 span{
+            border-bottom: 1px solid rgb(39, 255, 53);
+        }
+        .spot3 span{
+            border-bottom: 1px solid rgb(250, 255, 39);
+        }
+        .park span{
+            background-color: rgba(18,138,26,0.5) !important;
+            border-bottom: 1px solid rgb(255, 255, 255) !important;
+        }
+        .school span{
+            background-color: rgba(255,138,0,0.5) !important;
+            border-bottom: 1px solid rgb(255, 255, 255) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="hotspot-choose" style="display: none">
+        <div slot="spot1" class="hotspot-slot hotspot-action">配&nbsp;&nbsp;套</div>
+        <div slot="spot2" class="hotspot-slot">学&nbsp;&nbsp;校</div>
+        <div slot="spot3" class="hotspot-slot">交&nbsp;&nbsp;通</div>
+    </div>
+
+    <script>
+        function hasLoad(){
+            setTimeout(function(){$(".home-img-container").remove()}, 4000);
+            console.log("contact me:875167792@qq.com");
+        }
+        $(document).ready(function (){
+            // Create viewer
+            let viewer = pannellum.viewer('panorama', {
+                "showControls":false,
+                "autoLoad":true,
+                "hfov": hfov, //缩放
+                "pitch":-35,
+                "load":hasLoad(),
+                /*"hotSpotDebug": true,*/
+                "panorama": "/img/panoramaViewImg/panorama.jpg",
+                "preview":"/img/panoramaViewImg/preview.jpg",
+                "hotSpots":getHotSpotSlot()
+            });
+            //hotspot-toggle
+            $(".hotspot-slot").click(function(){
+                //remove old spot
+                let oldSpot =getHotSpotSlot($(".hotspot-action").attr("slot"));
+                for(let i=0;i<oldSpot.length;i++){
+                    viewer.removeHotSpot(oldSpot[i].id);
+                }
+                //add new spot
+                let newSpot =getHotSpotSlot($(this).attr("slot"));
+                for(let i=0;i<newSpot.length;i++){
+                    viewer.addHotSpot(newSpot[i]);
+                }
+                $(this).addClass("hotspot-action");
+                $(this).siblings().removeClass("hotspot-action");
+            });
+        });
+        // Hot spot creation function
+        function hotspot(hotSpotDiv, args) {
+            hotSpotDiv.classList.add('custom-tooltip');
+            let span = document.createElement('span');
+            let div1 = document.createElement('div');
+            div1.classList.add('custom-tooltip-div1');
+            span.innerHTML = args;
+            hotSpotDiv.appendChild(span);
+            hotSpotDiv.appendChild(div1);
+            span.style.width = span.scrollWidth - 10 + 'px';
+            span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+            span.style.marginTop = -span.scrollHeight + 'px';
+        }
+        function logospot(hotSpotDiv, args) {
+            let div = document.createElement('div');
+            let img = $('<img src="/img/logo.png" class="logo-spot-img" />');
+            $(hotSpotDiv).append(img);
+        }
+
+        function getHotSpotSlot(slot){
+            let object = {
+                "spot1": [
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -62.92,
+                        "yaw": -18.28,
+                        "cssClass": "custom-hotspot,spot1,park",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "北庭园"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -25.06,
+                        "yaw": -73.21,
+                        "cssClass": "custom-hotspot,spot1,park",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "天地园"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -54.02,
+                        "yaw": -59.32,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "文化中心"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -38.05,
+                        "yaw": -143.87,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "豪威酒店"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -19.96,
+                        "yaw": 23.46,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "住宅用地"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -21.12,
+                        "yaw": 56.43,
+                        "cssClass": "custom-hotspot,spot1,park",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "植物园"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -43.88,
+                        "yaw": 137.53,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "北庭商贸城"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -25.31,
+                        "yaw": -14.45,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "积善堂中医医院"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -39.92,
+                        "yaw": -53.74,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县妇幼保健站"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -42.41,
+                        "yaw": 76.01,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县医院"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -26.34,
+                        "yaw": 110.91,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县中医医院"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -36.79,
+                        "yaw": 77.91,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "吉木萨尔县政府"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -17.99,
+                        "yaw": 110.96,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "吉木萨尔镇政府"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -24.65,
+                        "yaw": 28.80,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "农贸市场"
+                    }],
+                "spot2" : [
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -36.75,
+                        "yaw": -16.59,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "第三中学"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -30.47,
+                        "yaw": -7.57,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县二幼"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -21.48,
+                        "yaw": -43.56,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县三小"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -28.51,
+                        "yaw": 85.68,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县一小"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -77.84,
+                        "yaw": -155.14,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县二中"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -57.95,
+                        "yaw": 149.72,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县二小"
+                    }],
+                "spot3" : [
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -23.94,
+                        "yaw": 18.39,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "孚远路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -28.26,
+                        "yaw": 79.33,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "北庭路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -24.12,
+                        "yaw": -3.66,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "天山路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -39.20,
+                        "yaw": 41.69,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "满城路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -53.90,
+                        "yaw": -1.62,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "文化西路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -61.82,
+                        "yaw": -34.39,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "民主巷"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -47.36,
+                        "yaw": -47.21,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "中心路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -43.77,
+                        "yaw": 53.09,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "文明路"
+                    }]
+            };
+            if(slot){
+                return object[slot];
+            }else{
+                let spot=[
+                    {
+                        "id":"logo",
+                        "pitch": -27.75,
+                        "yaw": 7.52,
+                        "cssClass": "custom-tooltip",
+                        "createTooltipFunc": logospot,
+                        "createTooltipArgs": "logo"
+                    }
+                ];
+                for(let obj in object){
+                    spot = spot.concat(object[obj]);
+                }
+                return spot;
+            }
+        }
+    </script>
+</body>
+</html>

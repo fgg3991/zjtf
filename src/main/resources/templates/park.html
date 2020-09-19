@@ -1,0 +1,159 @@
+<style>
+    .custom-hotspot {
+        height: 50px;
+        width: 50px;
+    }
+    div.custom-tooltip span {
+        position: absolute;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.5);
+        padding: 0 5px;
+        color: #ffffff;
+        text-align: center;
+        max-width: 200px;
+        margin-left: -220px;
+        cursor: default;
+        font-size: 0.8rem;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        pannellum.viewer('panorama', {
+            "default": {
+                "firstScene": "main",
+                "sceneFadeDuration": 1000,
+                /*"hotSpotDebug": true,*/
+                "showControls":false,
+                "autoLoad":true
+            },
+            "scenes": {
+                "main": {
+                    "hfov": roomfov, //缩放
+                    "pitch": -27.11,
+                    "yaw": 10.47,
+                    "panorama": "/img/park/panorama.jpg",
+                    "preview":"/img/park/preview.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -32.76,
+                            "yaw": 30.78,
+                            "type": "scene",
+                            "sceneId": "front",
+                            "cssClass": "custom-hotspot",
+                            "createTooltipFunc": starthotspot,
+                            "createTooltipArgs": "主入口"
+                        }
+                    ]
+                },
+                "front":{
+                    "hfov": roomfov, //缩放
+                    "pitch":10.62,
+                    "yaw": 0.05,
+                    "panorama": "/img/park/front.jpg",
+                    "preview":"/img/park/preview.jpg",
+                    "hotSpots":[
+                        {
+                            "pitch": -3.13,
+                            "yaw": 0.39,
+                            "type": "scene",
+                            "sceneId": "back",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "中庭景观"
+                        },
+                        {
+                            "pitch": 38.29,
+                            "yaw": -0.36,
+                            "type": "scene",
+                            "sceneId": "main",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "项目展示"
+                        }
+                    ]
+                },
+                "back":{
+                    "hfov": roomfov, //缩放
+                    "pitch": 7.46,
+                    "yaw":  -1.44,
+                    "panorama": "/img/park/back.jpg",
+                    "preview":"/img/park/preview.jpg",
+                    "hotSpots":[
+                        {
+                            "pitch": -20.49,
+                            "yaw": 1.21,
+                            "type": "scene",
+                            "sceneId": "inside",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "单元入户"
+                        },
+                        {
+                            "pitch": -0.57,
+                            "yaw": 176.21,
+                            "type": "front",
+                            "sceneId": "inside",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "主入口"
+                        },
+                        {
+                            "pitch": 38.29,
+                            "yaw": -0.36,
+                            "type": "scene",
+                            "sceneId": "main",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "项目展示"
+                        }
+                    ]
+                },
+                "inside":{
+                    "hfov": roomfov, //缩放
+                    "pitch": 4.46,
+                    "yaw": -0.28,
+                    "panorama": "/img/park/inside.jpg",
+                    "preview":"/img/park/preview.jpg",
+                    "hotSpots":[
+                        {
+                            "pitch": -5.00,
+                            "yaw": 179.97,
+                            "type": "scene",
+                            "sceneId": "back",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "中庭景观"
+                        },
+                        {
+                            "pitch": 38.29,
+                            "yaw": -0.36,
+                            "type": "scene",
+                            "sceneId": "main",
+                            "cssClass": "forward-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "项目展示"
+                        }
+                    ]
+                }
+            }
+        });
+    });
+    // Hot spot creation function
+    function hotspot(hotSpotDiv,args){
+        hotSpotDiv.classList.add('simple-hotspot');
+        let div = document.createElement('div');
+        div.innerHTML = args;
+        hotSpotDiv.style.width = div.scrollWidth - 15 + 'px';
+        hotSpotDiv.appendChild(div);
+    }
+    function starthotspot(hotSpotDiv, args) {
+        hotSpotDiv.classList.add('custom-tooltip');
+        let span = document.createElement('span');
+        span.innerHTML = args;
+        hotSpotDiv.appendChild(span);
+        span.style.width = '66px';
+        span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+        span.style.marginTop = -span.scrollHeight - 12 + 'px';
+    }
+</script>

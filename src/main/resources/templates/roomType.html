@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>roomType</title>
+    <style>
+        .room-type-div{
+            position: absolute;
+            background: none;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .room-bg-img{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .room-bg2-img{
+            width: 100vw;
+            height: unset;
+            top: 4%;
+            position: absolute;
+            z-index: 9999;
+        }
+        .room-container{
+            flex-shrink: 0;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .room-main-pic{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .room-float-pic{
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            position: absolute;
+            z-index: 9999;
+            pointer-events: none;
+            background: none;
+        }
+        .float-animation{
+            display: block;
+            animation: imgTwinkle 1s infinite linear;
+            -webkit-animation: imgTwinkle 1s infinite linear;
+        }
+        .room-full-pic{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: none;
+            margin: 0;
+        }
+        .room-full-change-div{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            display: flex;
+            transition-property: transform;
+            box-sizing: content-box;
+            transform: translate3d(0px, 0px, 0px);
+            transition-duration: 500ms;
+        }
+        .room-full-item{
+            flex-shrink: 0;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .room-full-image{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .room-change{
+            position: absolute;
+            top: 50%;
+            width: 14px;
+            height: 22px;
+            margin-top: -22px;
+            z-index: 10;
+            cursor: pointer;
+            background-size: 14px 22px;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        .room-change-next{
+            background-image: url(/img/right-arrow.svg);
+            right: 10px;
+            left: auto;
+
+        }
+        .room-change-prev{
+            background-image: url(/img/left-arrow.svg);
+            left: 10px;
+            right: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="room-type-div">
+<!--        <img class="room-bg-img" src="/img/roomImg/bg.png" />-->
+        <div class="room-main">
+            <div class="room-container" >
+                <!-- 区位一 -->
+                <img class="room-main-pic" src="/img/roomImg/apartment.jpg" />
+                <div>
+                    <img class="room-float-pic s1 float-animation" src="/img/roomImg/roomFloat1.png"/>
+                    <img class="room-float-pic s2" src="/img/roomImg/roomFloat2.png"/>
+                    <img class="room-float-pic s3" src="/img/roomImg/roomFloat3.png"/>
+                    <img class="room-float-pic s4" src="/img/roomImg/roomFloat4.png"/>
+                </div>
+                <section class="room-full-pic" >
+                    <div class="room-full-change-div" order=0>
+                        <div class="room-full-item " >
+                            <img class="room-full-image" src="/img/roomImg/roomType1.png">
+                        </div>
+                        <div class="room-full-item " >
+                            <img class="room-full-image" src="/img/roomImg/roomType2.png">
+                        </div>
+                        <div class="room-full-item " >
+                            <img class="room-full-image" src="/img/roomImg/roomType3.png">
+                        </div>
+                        <div class="room-full-item " >
+                            <img class="room-full-image" src="/img/roomImg/roomType4.png">
+                        </div>
+                    </div>
+                    <div class="room-change room-change-next" onclick=roomImgChange(1)></div>
+                    <div class="room-change room-change-prev" onclick=roomImgChange(2)></div>
+                </section>
+
+            </div>
+        </div>
+        <img class="room-bg2-img" src="/img/roomImg/bg2.png" />
+    </div>
+    <script>
+        $(document).ready(function(){
+            let startX;
+            $("body").on("touchstart", function(e) {
+                startX = e.originalEvent.changedTouches[0].pageX;
+            });
+            $("body").on("touchend", function(e) {
+                let moveEndX = e.originalEvent.changedTouches[0].pageX,
+                    X = moveEndX - startX;
+                //左滑
+                if ( X > 0 ) {
+                    roomImgChange(2);
+                }
+                //右滑
+                else if ( X < 0 ) {
+                    roomImgChange(1);
+                }
+            });
+
+            $(window).resize(function () {
+                $(".room-full-image").css({
+                    "width":'100vw',
+                    "height":"100vh"
+                })
+                let change = $(".room-full-change-div");
+                change.css({
+                    'transform': 'translate3d('+$(window).width()*eval(change.attr("order"))+'px, 0px, 0px)',
+                    'transition-duration': '0ms'
+                });
+            });
+        });
+
+        function roomImgChange(type){
+            let active = $(".float-animation");
+            let change = $(".room-full-change-div");
+            let next = active.next();
+            let prev = active.prev();
+            let width = $(window).width();
+            let picOrder = eval(change.attr("order"));
+            let target;
+            if(type === 1){
+                target = next;
+                picOrder = picOrder-1;
+            }else{
+                target = prev;
+                picOrder = picOrder+1;
+            }
+            if(target.length>0){
+                target.siblings().removeClass("float-animation");
+                target.addClass("float-animation");
+                change.css({
+                    'transform': 'translate3d('+width*picOrder+'px, 0px, 0px)',
+                    'transition-duration': '500ms'
+                });
+                change.attr("order",picOrder);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锦绣天府微沙盘</title>
+    <link rel="stylesheet" href="/css/pannellum.css"/>
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/js/pannellum.js"></script>
+    <script type="text/javascript" src="/js/libpannellum.js"></script>
+    <script type="text/javascript" src="//api.map.baidu.com/api?v=3.0&ak=sIp370V564Qe2foGr29z2MnMFZIDVI4c"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .main-div{
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .menu-div{
+            display: block;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100vw;
+            height: 56px;
+            padding: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            margin-top: 0;
+            box-shadow: 0 0 2px 0 #666;
+            z-index: 9990;
+        }
+        .panorama-menu{
+            display: block;
+            float: left;
+            width: 16.6667vw;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+        }
+        .panorama-menu i{
+            display: block;
+            position: relative;
+            background: url(/img/menu.png) no-repeat;
+            background-size: 1536px 128px;
+            background-position-y: -32px;
+            width: 32px;
+            height: 32px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            padding: 0;
+        }
+        .panorama-menu span{
+            display: block;
+            position: relative;
+            color: rgb(255, 255, 255);
+            top: -3px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            transform: scale(0.9);
+        }
+        .action>span{
+            color: rgb(233,184,132);
+        }
+        .action>i{
+            background-position-y: 0;
+        }
+        .menu-content{
+            right: unset;
+            transition: height 0s ease 0s, opacity 0.6s ease 0s, all 0.6s ease 0s;
+            height: auto;
+            opacity: 1;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            width: auto;
+            margin: auto;
+            border-radius: 4px;
+            z-index: 99999;
+            box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
+        }
+        .menu-simple-content{
+            left: 40%;
+            bottom: 62px;
+        }
+        .simple-content{
+            display: block;
+            position: relative;
+            background: none;
+            width: auto;
+            height: 17px;
+            border: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            float: none;
+            font-size: 12px;
+            text-decoration: none;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 3px solid rgba(0, 0, 0, 0);
+        }
+        .simple-content-action{
+            color: rgb(233,184,132);
+            border-bottom: 3px solid rgb(233,184,132);
+        }
+        .menu-others-content{
+            position: absolute;
+            text-align: center;
+            display: none;
+            height: 40px;
+            padding-top: 10px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            bottom: 55px;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .others-content{
+            display: block;
+            cursor:pointer;
+            float: left;
+            width: 50px;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            background: url(/img/menu.png) no-repeat;
+            background-size: 1536px 128px;
+            background-position-y: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            transform: scale(0.9);
+            z-index: 9999;
+        }
+        .others-action {
+            background-position-y: -32px;
+        }
+        .others-content-div{
+            width: 150px;
+            margin:0 auto;
+        }
+        .others-content-tel{
+            left: 20%;
+            bottom: 110px;
+        }
+        .content-tel{
+            display: block;
+            position: relative;
+            background: none;
+            width: auto;
+            height: 17px;
+            border: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            float: left;
+            font-size: 12px;
+            text-decoration: none;
+            text-align: center;
+            color: rgba(255, 255, 255, 1);
+            border-bottom: 3px solid rgba(0, 0, 0, 0);
+        }
+        .tel{
+            background-position-x: -1240px;
+        }
+        .music{
+            background-position-x: -490px;
+        }
+        .map{
+            background-position-x: -840px;
+        }
+        .logo-spot{
+            width: 40px;
+            height: 50px;
+            background: url(/img/logo.png) no-repeat;
+            background-size: 100%;
+            animation: logoAnimate 2s infinite ease-in-out;
+            -webkit-animation: logoAnimate 2s infinite ease-in-out;
+        }
+        .logo-spot-img{
+            width: 40px;
+            animation: logoAnimate 2s infinite linear;
+            -webkit-animation: logoAnimate 2s infinite linear;
+        }
+        .room-navigate{
+            display: none;
+            top:0;
+            left: 0;
+            position: absolute;
+            z-index: 3100;
+            overflow: visible;
+            opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
+            background-image: url(http://www.cq-rgb.com/rlsg3/skin/map/boxbg2.png);
+            width: 250px;
+            height: 273px;
+            background-position: 0 0;
+            background-size: 250px 273px;
+            transition-duration:500ms;
+            transform: translateZ(1e+12px) translate(-250px, 2px) translate(-125px, -136.5px) rotate(0deg) translate(125px, 136.5px);
+        }
+        .room-navigate-img{
+            position: absolute;
+            z-index: 3001;
+            overflow: visible;
+            opacity: 1;
+            cursor: default;
+            pointer-events: auto;
+            width: 245px;
+            height: 238px;
+            background-position: 0 0;
+            background-size: 245px 238px;
+            transform: translateZ(1e+12px) translate(0px, 18px) translate(-122.5px, 0px) rotate(0deg) translate(122.5px, 0px);
+        }
+        .room-navigate-icon{
+            position: absolute;
+            z-index: 3001;
+            overflow: visible;
+            opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
+            background-image: url(/img/simpleImg/show-icon.png);
+            width: 39px;
+            height: 117px;
+            background-position: 0px 0px;
+            background-size: 39px 117px;
+            transform: translateZ(1e+12px) translate(206px, 0px) translate(19.5px, -58.5px) rotate(0deg) translate(18px, 58.5px);
+        }
+
+        .navigate-position{
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 80%;
+            margin: 2px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img-container{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9995;
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #home-img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        .loading{
+            width: 150px;
+            height: 15px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 9996;
+        }
+        .loading div{
+            text-align: center;
+            color: white;
+        }
+        .loading span{
+            position: absolute;
+            width: 15px;
+            height: 100%;
+            border-radius: 50%;
+            background: lightgreen;
+            -webkit-animation: load 1.04s ease-in infinite alternate;
+        }
+        @-webkit-keyframes load{
+            0%{
+                opacity: 1;
+                -webkit-transform: translate(0px);
+            }
+            100%{
+                opacity: 0.2;
+                -webkit-transform: translate(135px);
+            }
+        }
+        .loading span:nth-child(1){
+            -webkit-animation-delay:0.13s;
+        }
+        .loading span:nth-child(2){
+            -webkit-animation-delay:0.26s;
+        }
+        .loading span:nth-child(3){
+            -webkit-animation-delay:0.39s;
+        }
+        .loading span:nth-child(4){
+            -webkit-animation-delay:0.52s;
+        }
+        .loading span:nth-child(5){
+            -webkit-animation-delay:0.65s;
+        }
+        .simple-hotspot{
+            height: 70px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .simple-hotspot>div{
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            background-color: rgba(0,0,0,0.5);
+            padding: 0 5px;
+        }
+        .forward-hotspot{
+            background: url(/img/simpleImg/forward.png) no-repeat;
+            background-size: 100%;
+            background-position-y: 10px;
+        }
+        .right-hotspot{
+            background: url(/img/simpleImg/turnRight.png) no-repeat;
+            background-size: 100%;
+            background-position-y: 10px;
+        }
+        .left-hotspot{
+            background: url(/img/simpleImg/turnLeft.png) no-repeat;
+            background-size: 100%;
+            background-position-y: 10px;
+        }
+
+        @keyframes imgTwinkle {
+            0%{
+                opacity: 1;
+            }
+            25%{
+                opacity: 1;
+            }
+            50%{
+                opacity: 0.3;
+            }
+            75%{
+                opacity: 0.5;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+        @keyframes logoAnimate {
+            0%{
+                transform: translateY(0);
+            }
+            25%{
+                transform: translateY(2px);
+            }
+            50%{
+                transform: translateY(0);
+            }
+            75%{
+                transform: translateY(-2px);
+            }
+            100%{
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="main-div">
+    <div class="panoramic-div" id="panorama"></div>
+    <div class="menu-div">
+        <div class="panorama-menu menu-panorama-view action" link="PanoramaView" >
+            <i style="background-position-x: 0;"></i><span>区位展示</span>
+        </div>
+        <div class="panorama-menu menu-area" link="AreaMap" >
+            <i style="background-position-x: -50px;"></i><span>形象展示</span>
+        </div>
+        <div class="panorama-menu menu-park " link="Park" >
+            <i style="background-position-x: -150px;"></i><span>项目展示</span>
+        </div>
+        <div class="panorama-menu menu-room-type" link="RoomType" >
+            <i style="background-position-x: -100px;"></i><span>户型展示</span>
+        </div>
+        <div class="panorama-menu menu-simple" link="Simple" >
+            <i style="background-position-x: -950px;"></i><span>户型漫游</span>
+        </div>
+        <div class="panorama-menu menu-others" link="Others" >
+            <i style="background-position-x: -200px;"></i><span>更多</span>
+        </div>
+    </div>
+    <div class="content-div" >
+        <div class="menu-content menu-simple-content">
+            <div class="simple-content" link="simple1">现代【115m²】</div>
+            <div class="simple-content" link="simple2">港式【125m²】</div>
+            <div class="simple-content" link="simple3">欧式【140m²】</div>
+            <div class="simple-content" link="simple4">新中式【155m²】</div>
+        </div>
+        <div class="menu-others-content">
+            <div class="others-content-div">
+                <div class="others-content tel"></div>
+                <div class="others-content music" play="true"></div>
+                <div class="others-content map"></div>
+            </div>
+        </div>
+        <div class="menu-content others-content-tel">
+            <div onclick="window.location.href ='tel:09948360888'" class="content-tel">联系电话：0994-8360888</div>
+            <div class="content-tel" style="transform: scale(0.7)">地址：新疆吉木萨尔县孚远路与文明西路交汇处</div>
+        </div>
+        <div class="room-navigate">
+            <div class="room-navigate-img"></div>
+            <div class="room-navigate-icon" status="hide"></div>
+        </div>
+    </div>
+    <div class="home-img-container">
+        <div class="loading">
+            <div>资源加载中</div>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <img id="home-img" src="/img/home.png">
+    </div>
+    <div style="display: none">
+        <p id="appId" th:text="${appid}"></p>
+        <p id="timestamp" th:text="${timestamp}"></p>
+        <p id="nonceStr" th:text="${nonceStr}"></p>
+        <p id="signature" th:text="${signature}"></p>
+        <p id="url" th:text="${url}"></p>
+    </div>
+</div>
+<script>
+    let link = window.location.href.split("?")[0];
+    if(link !== window.location.href)
+    {
+        window.location.href = link;
+    }
+    hfov = isMobile() ?65 :120;
+    roomfov = isMobile()?80:120;
+    $(document).ready(function (){
+        let url=$("#url").text();//location.href;
+        wx.config({
+            debug: false,
+            appId: $("#appId").text(),
+            timestamp: $("#timestamp").text(),
+            nonceStr: $("#nonceStr").text(),
+            signature: $("#signature").text(),
+            jsApiList: [
+                /*'updateAppMessageShareData',
+                'updateTimelineShareData',*/
+                'onMenuShareAppMessage',
+                'onMenuShareTimeline'
+            ]
+        });
+        wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
+            //alert("config验证成功");
+            let shareData = {
+                title: "蓉泰·锦绣天府·微沙盘", // 分享标题
+                desc: "蓉泰·锦绣天府【人文府邸 名仕大宅】115㎡-198㎡生态花语洋房。", // 分享描述
+                link: url, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://www.jxtfh5.top/img/share.jpg', // 分享图标
+                success: function () {
+                    //alert("分享给朋友配置成功");
+                }
+            };
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(shareData);
+        });
+        wx.error(function (res) {
+            //alert.log("wxconfigERROR:"+res.errMsg);
+        });
+        for(let i =0;i<49;i++){
+            $(".room-navigate-img").append($("<div class='navigate-position' number="+i+"></div>"));
+        }
+        menuClick("/getPanoramaView");
+        wbmg_MusicManager.regist('background', '/music/Leaf-white-album.mp3');
+        wbmg_MusicManager.play( 'background' );
+        $(".panorama-menu").click(function(){
+            $(this).addClass("action");
+            $(this).siblings().removeClass("action");
+            if($(this).attr("link") === "Simple" ||$(this).attr("link") === "Others"){return;}
+            let url = "/get"+$(this).attr("link");
+            menuClick (url);
+            $(".menu-simple-content").hide();
+            $(".others-content-tel").hide();
+            $(".menu-others-content").hide();
+            $(".room-navigate").hide();
+            hideNavigate();
+        });
+        $(".menu-simple").click(function () {
+            $(".menu-others-content").hide();
+            $(".menu-simple-content").toggle();
+        });
+        $(".simple-content").click(function(){
+            $(".room-navigate").show();
+            $(this).addClass("simple-content-action");
+            $(this).siblings().removeClass("simple-content-action");
+            menuClick("/getSimple");
+            $(".menu-simple-content").hide();
+        });
+        $(".menu-others").click(function () {
+            $(".menu-simple-content").hide();
+            $(".others-content-tel").hide();
+            $(".menu-others-content").toggle("slow");
+        });
+
+        $(".room-navigate-icon").click(function () {
+            if($(this).attr("status") === "hide"){
+                showNavigate();
+            }else{
+                hideNavigate();
+            }
+        });
+
+        $(".tel").click(function () {
+            telfun();
+        });
+        $(".music").click(function () {
+            musicfun();
+        });
+        $(".map").click(function () {
+            mapfun();
+        });
+
+    });
+
+    document.getElementsByClassName("tel")[0].addEventListener('touchstart', function(e) {
+        telfun();
+        e.preventDefault();
+    });
+    document.getElementsByClassName("music")[0].addEventListener('touchstart', function(e) {
+        musicfun();
+        e.preventDefault();
+    });
+    document.getElementsByClassName("map")[0].addEventListener('touchstart', function(e) {
+        mapfun();
+        e.preventDefault();
+    });
+
+    function telfun(){
+        $(".content-tel").css("float","none");
+        $(".others-content-tel").toggle();
+    }
+    function musicfun(){
+        let e = $(".music");
+        if(e.hasClass("others-action")){
+            e.removeClass("others-action");
+            wbmg_MusicManager.play( 'background' );
+        }else{
+            wbmg_MusicManager.pause( 'background' );
+            e.addClass("others-action");
+        }
+    }
+    function mapfun(){
+        $(".room-navigate").hide();
+        let x = 89.175425;
+        let y = 44.005049;
+        let ggPoint = new BMap.Point(x,y);
+        //地图初始化
+        let bm = new BMap.Map("panorama");
+        bm.centerAndZoom(ggPoint, 12);
+        bm.addControl(new BMap.NavigationControl());
+        //添加gps marker和label
+        let markergg = new BMap.Marker(ggPoint);
+        bm.addOverlay(markergg); //添加GPS marker
+        let labelgg = new BMap.Label("锦绣天府",{offset:new BMap.Size(20,-10)});
+        markergg.setLabel(labelgg);
+        //window.location.href="https://j.map.baidu.com/68/2m7";
+        //window.location.href="https://api.map.baidu.com/marker?location=89.17508830044554,43.999179718354405&title=楼盘位置&content=锦绣天府&output=html";
+    }
+
+    function menuClick (url){
+        $.ajax({
+            url:url,
+            type:"get",
+            success:function (e){
+                $("#panorama").html(e);
+            }
+        });
+    }
+
+    function isMobile() {
+        let userAgentInfo = navigator.userAgent;
+        let mobileAgents = [ "Android", "iPhone", "SymbianOS", "Windows Phone", "iPad","iPod"];
+        let mobile_flag = false;
+        //根据userAgent判断是否是手机
+        for (let v = 0; v < mobileAgents.length; v++) {
+            if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
+                mobile_flag = true;
+                break;
+            }
+        }
+        let screen_width = window.screen.width;
+        let screen_height = window.screen.height;
+        //根据屏幕分辨率判断是否是手机
+        if(screen_width < 600 && screen_height < 900){
+            mobile_flag = true;
+        }
+        return mobile_flag;
+    }
+
+    let wbmg_MusicManager = new function() {
+        let listMusics = {};
+        this.regist = function(nameMusic, urlMusic) {
+            if (null != nameMusic && null != urlMusic) {
+                let elementAudio = document.createElement('audio');
+                elementAudio.id = nameMusic;
+                elementAudio.loop = 'loop';
+                elementAudio.src = urlMusic;
+                document.body.appendChild(elementAudio);
+                document.addEventListener("WeixinJSBridgeReady", function() { elementAudio.play(); }, false);
+                document.addEventListener('YixinJSBridgeReady', function() { elementAudio.play(); }, false);
+                listMusics[nameMusic] = { 'name': nameMusic, 'object': elementAudio, 'url': urlMusic };
+            }
+        };
+        this.play = function(nameMusic) {
+            if (listMusics[nameMusic]) {
+                let itemMusic = listMusics[nameMusic];
+                itemMusic['object'].play();
+            }
+        };
+        this.pause = function(nameMusic, statu) {
+            if (null != statu) {
+                statu ? itemMusic['object'].play() : itemMusic['object'].pause();
+            } else {
+                if (listMusics[nameMusic]) {
+                    let itemMusic = listMusics[nameMusic];
+                    if (itemMusic['object'].paused) {
+                        itemMusic['object'].play();
+                    } else {
+                        itemMusic['object'].pause();
+                    }
+                }
+            }
+        }
+    };
+
+    function hideNavigate(){
+        $(".room-navigate-icon").attr("status","hide");
+        $(".room-navigate-icon").css({'background-image': 'url(/img/simpleImg/show-icon.png)'});
+        $(".room-navigate").css({'transform': 'translateX(-250px)'});
+    }
+    function showNavigate() {
+        $(".room-navigate-icon").attr("status","show");
+        $(".room-navigate-icon").css({'background-image': 'url(/img/simpleImg/hide-icon.png)'});
+        $(".room-navigate").css({'transform': 'translateX(0px)'});
+    }
+
+</script>
+
+</body>
+</html>

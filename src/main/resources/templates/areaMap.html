@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>areaMap</title>
+    <link rel="stylesheet" href="/css/zy.media.min.css">
+    <script src="/js/zy.media.min.js"></script>
+    <style>
+        #modelView{height: 100%;width: 100%;position: relative;}
+        .playvideo{padding-top: auto;z-index: 9988;position: relative;}
+        .zy_media{z-index: 9989}
+    </style>
+</head>
+<body>
+    <div class="playvideo" >
+        <div class="zy_media">
+            <video poster="/video/video.jpg" data-config='{"mediaTitle": "锦绣天府介绍"}'>
+                <source src="/video/introduce.mp4" type="video/mp4">
+                您的浏览器不支持HTML5视频
+            </video>
+        </div>
+        <div id="modelView">&nbsp;</div>
+    </div>
+    <script>
+        document.body.style.overflow='hidden';
+        zymedia('video',{autoplay: false});
+        var screenheight = window.screen.height/2;
+        $("#modelView").width(window.screen.width);
+        $("#modelView").height(window.screen.height);
+        var videoheight = $(".zy_media").height()/2;
+        var padding_top = screenheight-videoheight-56;
+        $(".playvideo").css({"top":padding_top});
+        $("#modelView").css({"margin-top":-1*(padding_top+$(".zy_media").height())});
+    </script>
+</body>
+</html>
