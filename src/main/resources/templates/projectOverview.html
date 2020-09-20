@@ -1,0 +1,203 @@
+<style>
+    .navigate27{
+        transform:translateY(-25px);
+    }
+    .hotspot-choose{
+        position: absolute;
+        z-index: 99;
+        right: 0;
+        bottom: 100px;
+        margin-right: 1vw;
+    }
+    .hotspot-slot{
+        display: none;
+        overflow: visible;
+        width:60px;
+        opacity: 0.7;
+        pointer-events: auto;
+        border-radius: 15px;
+        z-index: 999;
+        text-align: center;
+        padding: 0 10px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: rgb(255,255,255);
+        background-color: rgba(0,0,0,0.8);
+        margin-top: 5px;
+    }
+</style>
+<div class="hotspot-choose" >
+    <div class="hotspot-slot slot-traffic life">交&nbsp;&nbsp;通</div>
+    <div class="hotspot-slot slot-animate life" pit="-42.25">商&nbsp;&nbsp;业</div>
+    <div class="hotspot-slot slot-animate life" pit="-29.55">市&nbsp;&nbsp;政</div>
+    <div class="hotspot-slot slot-animate life" pit="-29.55">教&nbsp;&nbsp;育</div>
+    <div class="hotspot-slot slot-animate life" pit="-29.55">生&nbsp;&nbsp;态</div>
+    <div class="hotspot-slot slot-animate life" pit="-29.55">医&nbsp;&nbsp;疗</div>
+    <div class="hotspot-slot slot-animate traffic" pit="-29.55">主干道</div>
+    <div class="hotspot-slot slot-animate traffic" pit="-29.55">地铁</div>
+</div>
+<script>
+    $(document).ready(function () {
+        let view = getSimple();
+        let viewer = pannellum.viewer('panorama', view);
+        $(".slot-animate").click(function () {
+            viewer.setPitch($(this).attr("pit"),500);
+        });
+        $(".slot-traffic").click(function () {
+            pannellum.viewer('panorama', {
+                "showControls":false,
+                "autoLoad":true,
+                "hfov": hfov*0.83, //缩放
+                "pitch":-86.644,
+                "yaw": 7.208,
+                "hotSpotDebug": debug,
+                "panorama": "/img/projectOverview/traffic.jpg",
+            });
+        });
+    });
+    function getSimple(){
+        let object =
+            {
+                "panorama": {
+                    "showControls":false,
+                    "autoLoad":true,
+                    "hfov": hfov, //缩放
+                    "pitch":-44.293,
+                    "yaw": 3.530,
+                    "hotSpotDebug": debug,
+                    "panorama": "/img/panoramaViewImg/panorama.jpg",
+                    "preview":"/img/panoramaViewImg/preview.jpg",
+                },
+                "business":{
+                    "showControls":false,
+                    "autoLoad":true,
+                    "hfov": hfov, //缩放
+                    "pitch":-42.956,
+                    "yaw": 0.622,
+                    "hotSpotDebug": debug,
+                    "panorama": "/img/projectOverview/business.jpg",
+                    "hotSpots":getHotSpot("business")
+                },
+                "apartment":{
+                    "showControls":false,
+                    "autoLoad":true,
+                    "hfov": hfov, //缩放
+                    "pitch":-44.293,
+                    "yaw": 3.530,
+                    "hotSpotDebug": debug,
+                    "panorama": "/img/projectOverview/apartment.jpg",
+                    "hotSpots":getHotSpot("apartment")
+                },
+                "industry":{
+                    "showControls":false,
+                    "autoLoad":true,
+                    "hfov": hfov, //缩放
+                    "pitch":-47.321,
+                    "yaw": 20.150,
+                    "hotSpotDebug": debug,
+                    "panorama": "/img/projectOverview/industry.jpg",
+                },
+                "life":{
+                    "showControls":false,
+                    "autoLoad":true,
+                    "hfov": hfov, //缩放
+                    "pitch":-28.701,
+                    "yaw": 2.712,
+                    "hotSpotDebug": debug,
+                    "panorama": "/img/projectOverview/life.jpg",
+                },
+                "traffic":{
+                    "showControls":false,
+                    "autoLoad":true,
+                    "hfov": hfov, //缩放
+                    "pitch":-47.321,
+                    "yaw": 20.150,
+                    "hotSpotDebug": debug,
+                    "panorama": "/img/projectOverview/traffic.jpg",
+                }
+            };
+        let simple = $(".simple-content-action").attr("link");
+        $("."+simple).show();
+        return object[simple];
+    }
+
+    function getHotSpot(slot){
+        let object = {
+            "business": [
+                {
+                    "id":"spot-bus",
+                    "pitch": -29.464,
+                    "yaw": -28.038,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "unit1build1.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -46.751,
+                    "yaw": -14.027,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "4.png"
+                }
+            ],
+            "apartment":[
+                {
+                    "id":"spot-bus",
+                    "pitch": -51.290,
+                    "yaw": 25.974,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "13.png"
+                }
+            ]
+        };
+        return object[slot];
+    }
+
+    function hotspot(hotSpotDiv,args){
+        hotSpotDiv.classList.add('simple-hotspot');
+        let div = document.createElement('div');
+        div.innerHTML = args;
+        hotSpotDiv.style.width = div.scrollWidth - 15 + 'px';
+        hotSpotDiv.appendChild(div);
+    }
+    function imgSpot(hotSpotDiv, args) {
+        let div = document.createElement('div');
+        let img = $('<img src="/img/icon/'+args+'" class="spot-img" />');
+        $(hotSpotDiv).append(img);
+    }
+    function hotspotClick() {
+        $(".navigate-position").removeClass("navigate27");
+        let simple = $(".simple-content-action").attr("link");
+        let number = getNavicateNum(this["sceneId"]);
+        if(simple === "simple2"){
+            if(number === 27){
+                $(".navigate-position[number=27]").addClass("navigate27");
+            }
+        }
+        if(simple === "simple3"){
+            if(number === 27){
+                $(".navigate-position[number=27]").addClass("navigate27");
+            }
+        }
+        $(".navigate-position").css({'background-image': 'url()'});
+        $(".navigate-position[number='"+number+"']")
+            .css({'background-image': 'url(/img/simpleImg/spot-active.png)'});
+    }
+    function hotspotTouch() {
+        $(".navigate-position").removeClass("navigate27");
+        let simple = $(".simple-content-action").attr("link");
+        let number = getNavicateNum(this["sceneId"]);
+        if(simple === "simple2"){
+            if(number === 27){
+                $(".navigate-position[number=27]").addClass("navigate27");
+            }
+        }
+        if(simple === "simple3"){
+            if(number === 27){
+                $(".navigate-position[number=27]").addClass("navigate27");
+            }
+        }
+        $(".navigate-position").css({'background-image': 'url()'});
+        $(".navigate-position[number='"+number+"']")
+            .css({'background-image': 'url(/img/simpleImg/spot-active.png)'});
+    }
+</script>

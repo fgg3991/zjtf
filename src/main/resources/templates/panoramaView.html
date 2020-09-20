@@ -70,7 +70,7 @@
     </style>
 </head>
 <body>
-    <div class="hotspot-choose" style="display: none">
+    <div class="hotspot-choose" >
         <div slot="spot1" class="hotspot-slot hotspot-action">配&nbsp;&nbsp;套</div>
         <div slot="spot2" class="hotspot-slot">学&nbsp;&nbsp;校</div>
         <div slot="spot3" class="hotspot-slot">交&nbsp;&nbsp;通</div>
@@ -78,7 +78,7 @@
 
     <script>
         function hasLoad(){
-            setTimeout(function(){$(".home-img-container").remove()}, 400);
+            //setTimeout(function(){$(".home-img-container").remove()}, 400);
             console.log("contact me:875167792@qq.com");
         }
         $(document).ready(function (){
@@ -87,9 +87,10 @@
                 "showControls":false,
                 "autoLoad":true,
                 "hfov": hfov, //缩放
-                "pitch":-35,
+                "pitch":-44.293,
+                "yaw": 3.530,
                 "load":hasLoad(),
-                /*"hotSpotDebug": true,*/
+                "hotSpotDebug": true,
                 "panorama": "/img/panoramaViewImg/panorama.jpg",
                 "preview":"/img/panoramaViewImg/preview.jpg",
                 "hotSpots":getHotSpotSlot()
@@ -372,9 +373,10 @@
                         "createTooltipArgs": "logo"
                     }
                 ];
-                for(let obj in object){
-                    spot = spot.concat(object[obj]);
-                }
+                //页面初始化时slot为undefined，此时将logo加入热点中
+                // for(let obj in object){
+                //     spot = spot.concat(object[obj]);
+                // }
                 return spot;
             }
         }

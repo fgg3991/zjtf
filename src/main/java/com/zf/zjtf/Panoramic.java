@@ -48,4 +48,8 @@ public class Panoramic {
     public String getSimple (){
         return "simple";
     }
+    @RequestMapping(path = {"/projectOverview"})
+    public String getProjectOverview (){
+        return "projectOverview";
+    }
 }

@@ -73,7 +73,6 @@
         .room-full-change-div{
             position: relative;
             width: 100vw;
-            height: 100vh;
             z-index: 1;
             display: flex;
             transition-property: transform;
@@ -84,13 +83,12 @@
         .room-full-item{
             flex-shrink: 0;
             width: 100vw;
-            height: 100vh;
             position: relative;
         }
         .room-full-image{
             position: absolute;
             width: 100vw;
-            height: 100vh;
+            height: 50vh;
             left: 0;
             top: 0;
             z-index: 0;
@@ -124,7 +122,6 @@
 </head>
 <body>
     <div class="room-type-div">
-<!--        <img class="room-bg-img" src="/img/roomImg/bg.png" />-->
         <div class="room-main">
             <div class="room-container" >
                 <!-- 区位一 -->
@@ -132,8 +129,6 @@
                 <div>
                     <img class="room-float-pic s1 float-animation" src="/img/roomImg/roomFloat1.png"/>
                     <img class="room-float-pic s2" src="/img/roomImg/roomFloat2.png"/>
-                    <img class="room-float-pic s3" src="/img/roomImg/roomFloat3.png"/>
-                    <img class="room-float-pic s4" src="/img/roomImg/roomFloat4.png"/>
                 </div>
                 <section class="room-full-pic" >
                     <div class="room-full-change-div" order=0>
@@ -142,12 +137,6 @@
                         </div>
                         <div class="room-full-item " >
                             <img class="room-full-image" src="/img/roomImg/roomType2.png">
-                        </div>
-                        <div class="room-full-item " >
-                            <img class="room-full-image" src="/img/roomImg/roomType3.png">
-                        </div>
-                        <div class="room-full-item " >
-                            <img class="room-full-image" src="/img/roomImg/roomType4.png">
                         </div>
                     </div>
                     <div class="room-change room-change-next" onclick=roomImgChange(1)></div>
@@ -180,7 +169,7 @@
             $(window).resize(function () {
                 $(".room-full-image").css({
                     "width":'100vw',
-                    "height":"100vh"
+                    "height":"50vh"
                 })
                 let change = $(".room-full-change-div");
                 change.css({
@@ -191,6 +180,7 @@
         });
 
         function roomImgChange(type){
+            console.log("change");
             let active = $(".float-animation");
             let change = $(".room-full-change-div");
             let next = active.next();
