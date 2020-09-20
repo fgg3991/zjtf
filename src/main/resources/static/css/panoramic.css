@@ -21,6 +21,7 @@
     z-index: 9990;
 }
 .panorama-menu{
+    cursor: pointer;
     position: relative;
     display: block;
     float: left;

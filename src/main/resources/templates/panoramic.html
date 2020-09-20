@@ -147,7 +147,6 @@
         $(".panorama-menu").click(function(){
             $(this).addClass("action");
             $(this).siblings().removeClass("action");
-
             if($(this).attr("link") === "Simple" ||$(this).attr("link") === "Others"){return;}
             let url = "/get"+$(this).attr("link");
             //子菜单展示
@@ -170,6 +169,7 @@
         $(".nav-panorama").click(function () {
             let type = $(this).attr("type");
             if(type){
+                console.log(type);
                 $(".nav-panorama").removeClass("simple-content-action");
                 $(this).addClass("simple-content-action");
                 menuClick("/"+type+ "?token=" + new Date().getTime());

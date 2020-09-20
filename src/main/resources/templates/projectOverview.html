@@ -30,9 +30,9 @@
     <div class="hotspot-slot slot-traffic life">交&nbsp;&nbsp;通</div>
     <div class="hotspot-slot slot-animate life" pit="-42.25">商&nbsp;&nbsp;业</div>
     <div class="hotspot-slot slot-animate life" pit="-29.55">市&nbsp;&nbsp;政</div>
-    <div class="hotspot-slot slot-animate life" pit="-29.55">教&nbsp;&nbsp;育</div>
-    <div class="hotspot-slot slot-animate life" pit="-29.55">生&nbsp;&nbsp;态</div>
-    <div class="hotspot-slot slot-animate life" pit="-29.55">医&nbsp;&nbsp;疗</div>
+    <div class="hotspot-slot slot-animate life" pit="-19.55">教&nbsp;&nbsp;育</div>
+    <div class="hotspot-slot slot-animate life" pit="-9.55">生&nbsp;&nbsp;态</div>
+    <div class="hotspot-slot slot-animate life" pit="0.55">医&nbsp;&nbsp;疗</div>
     <div class="hotspot-slot slot-animate traffic" pit="-29.55">主干道</div>
     <div class="hotspot-slot slot-animate traffic" pit="-29.55">地铁</div>
 </div>
@@ -44,6 +44,8 @@
             viewer.setPitch($(this).attr("pit"),500);
         });
         $(".slot-traffic").click(function () {
+            $(".life").hide();
+            $(".traffic").show();
             pannellum.viewer('panorama', {
                 "showControls":false,
                 "autoLoad":true,
