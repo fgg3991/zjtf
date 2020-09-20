@@ -26,6 +26,7 @@
             overflow: hidden;
         }
         .menu-div{
+            color: white;
             display: block;
             position: absolute;
             background: rgba(0, 0, 0, 0.5);
@@ -41,9 +42,10 @@
             z-index: 9990;
         }
         .panorama-menu{
+            position: relative;
             display: block;
             float: left;
-            width: 16.6667vw;
+            width: 20vw;
             height: 50px;
             margin: 0;
             padding: 0;
@@ -52,8 +54,8 @@
             display: block;
             position: relative;
             background: url(/img/menu.png) no-repeat;
-            background-size: 1536px 128px;
-            background-position-y: -32px;
+            background-size: 702px 140px;
+            background-position-y: -26px;
             width: 32px;
             height: 32px;
             left: 0;
@@ -77,25 +79,22 @@
             color: rgb(233,184,132);
         }
         .action>i{
-            background-position-y: 0;
+            /*background-position-y: -85px;*/
         }
         .menu-content{
-            right: unset;
+            position: absolute;
+            bottom: 51px;
             transition: height 0s ease 0s, opacity 0.6s ease 0s, all 0.6s ease 0s;
-            height: auto;
             opacity: 1;
             display: none;
             background-color: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            width: auto;
+            width: 20vw;
             margin: auto;
             border-radius: 4px;
             z-index: 99999;
             box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5);
         }
         .menu-simple-content{
-            left: 40%;
-            bottom: 62px;
         }
         .simple-content{
             display: block;
@@ -389,31 +388,47 @@
     <div class="panoramic-div" id="panorama"></div>
     <div class="menu-div">
         <div class="panorama-menu menu-panorama-view action" link="PanoramaView" >
-            <i style="background-position-x: 0;"></i><span>区位展示</span>
+            <div class="menu-content menu-simple-content">
+                <div class="simple-content" link="simple1">城市信息</div>
+                <div class="simple-content" link="simple2">配套</div>
+                <div class="simple-content" link="simple3">产业圈</div>
+            </div>
+            <i style="background-position-x: -55px;"></i><span>区域规划</span>
         </div>
         <div class="panorama-menu menu-area" link="AreaMap" >
-            <i style="background-position-x: -50px;"></i><span>形象展示</span>
+            <div class="menu-content menu-simple-content">
+                <div class="simple-content" link="simple1">鸟瞰图</div>
+                <div class="simple-content" link="simple2">商业地块</div>
+                <div class="simple-content" link="simple3">住宅地块</div>
+            </div>
+            <i style="background-position-x: -200px;"></i><span>项目概况</span>
         </div>
         <div class="panorama-menu menu-park " link="Park" >
-            <i style="background-position-x: -150px;"></i><span>项目展示</span>
+            <div class="menu-content menu-simple-content">
+                <div class="simple-content" link="simple1">市政篮球公园</div>
+                <div class="simple-content" link="simple2">五大景观</div>
+                <div class="simple-content" link="simple3">60S小视频</div>
+            </div>
+            <i style="background-position-x: -337px;"></i><span>景观鉴赏</span>
         </div>
         <div class="panorama-menu menu-room-type" link="RoomType" >
-            <i style="background-position-x: -100px;"></i><span>户型展示</span>
-        </div>
-        <div class="panorama-menu menu-simple" link="Simple" >
-            <i style="background-position-x: -950px;"></i><span>户型漫游</span>
+            <div class="menu-content menu-simple-content">
+                <div class="simple-content" link="simple1">户型分布</div>
+                <div class="simple-content" link="simple2">户型鉴赏</div>
+                <div class="simple-content" link="simple3">实体样板间</div>
+            </div>
+            <i style="background-position-x: -478px;"></i><span>户型鉴赏</span>
         </div>
         <div class="panorama-menu menu-others" link="Others" >
-            <i style="background-position-x: -200px;"></i><span>更多</span>
+            <div class="menu-content menu-simple-content">
+                <div class="simple-content" link="simple1">品牌</div>
+                <div class="simple-content" link="simple2">地图</div>
+                <div class="simple-content" link="simple3">电话</div>
+            </div>
+            <i style="background-position-x: -619px;"></i><span>联系方式</span>
         </div>
     </div>
     <div class="content-div" >
-        <div class="menu-content menu-simple-content">
-            <div class="simple-content" link="simple1">现代【115m²】</div>
-            <div class="simple-content" link="simple2">港式【125m²】</div>
-            <div class="simple-content" link="simple3">欧式【140m²】</div>
-            <div class="simple-content" link="simple4">新中式【155m²】</div>
-        </div>
         <div class="menu-others-content">
             <div class="others-content-div">
                 <div class="others-content tel"></div>
@@ -421,7 +436,7 @@
                 <div class="others-content map"></div>
             </div>
         </div>
-        <div class="menu-content others-content-tel">
+        <div class="menu-content1 others-content-tel1">
             <div onclick="window.location.href ='tel:09948360888'" class="content-tel">联系电话：0994-8360888</div>
             <div class="content-tel" style="transform: scale(0.7)">地址：新疆吉木萨尔县孚远路与文明西路交汇处</div>
         </div>
@@ -462,8 +477,6 @@
             nonceStr: $("#nonceStr").text(),
             signature: $("#signature").text(),
             jsApiList: [
-                /*'updateAppMessageShareData',
-                'updateTimelineShareData',*/
                 'onMenuShareAppMessage',
                 'onMenuShareTimeline'
             ]
@@ -494,13 +507,13 @@
         $(".panorama-menu").click(function(){
             $(this).addClass("action");
             $(this).siblings().removeClass("action");
+
             if($(this).attr("link") === "Simple" ||$(this).attr("link") === "Others"){return;}
             let url = "/get"+$(this).attr("link");
-            menuClick (url);
-            $(".menu-simple-content").hide();
-            $(".others-content-tel").hide();
-            $(".menu-others-content").hide();
-            $(".room-navigate").hide();
+            //子菜单展示
+            $(".menu-content").hide();
+            $(this).children(".menu-content").toggle();
+            //menuClick (url);
             hideNavigate();
         });
         $(".menu-simple").click(function () {

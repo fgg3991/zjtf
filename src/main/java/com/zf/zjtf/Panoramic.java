@@ -17,7 +17,7 @@ import java.util.Map;
 public class Panoramic {
     @RequestMapping(value = {"","/","/home"})
     public ModelAndView getParamDemo1 () throws Exception {
-        JSONObject wxConfig = WxApiUtil.createWxConfig();
+        //JSONObject wxConfig = WxApiUtil.createWxConfig();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("panoramic");
 //        Iterator iter = wxConfig.entrySet().iterator();
