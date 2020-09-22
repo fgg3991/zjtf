@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紫金天府微沙盘</title>
+    <link rel="stylesheet" href="/css/pannellum.css"/>
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/js/pannellum.js"></script>
+    <script type="text/javascript" src="/js/libpannellum.js"></script>
+    <style>
+        .planet{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9995;
+
+        }
+        #planet-img{
+            width: 100vw;
+            height: 100vh;
+            -webkit-animation: planet 1.5s linear 1 forwards;
+        }
+        @-webkit-keyframes planet{
+            0%{
+                transform: scale(1) rotate(0deg) translateY(0px);
+            }
+            100%{
+                transform: scale(2.5) rotate(195deg) translateY(-20px) translateZ(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="planet">
+        <img id="planet-img" src="/img/panoramaViewImg/planet.jpg"></div>
+    </div>
+<div style="position: absolute;z-index: -1">
+    内容
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 80
 
 natappauthtoken: dd42202e80d87cfd
 configuration:

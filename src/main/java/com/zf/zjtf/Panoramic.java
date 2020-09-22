@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * @author zhangfei on 2020/5/11
+ * @author zhangfei on 2020/9/21
  */
 @Controller
 public class Panoramic {
@@ -51,5 +51,9 @@ public class Panoramic {
     @RequestMapping(path = {"/projectOverview"})
     public String getProjectOverview (){
         return "projectOverview";
+    }
+    @RequestMapping(path = {"/planet"})
+    public String getPlanet (){
+        return "planet";
     }
 }

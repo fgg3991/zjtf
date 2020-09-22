@@ -261,6 +261,19 @@
     width: 100vw;
     height: 100vh;
 }
+.planet{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9995;
+    -webkit-animation: planet 1.5s linear 1s 1 forwards;
+}
+#planet-img{
+    width: 100vw;
+    height: 100vh;
+}
 .loading{
     width: 150px;
     height: 15px;
@@ -279,6 +292,17 @@
     border-radius: 50%;
     background: lightgreen;
     -webkit-animation: load 1.04s ease-in infinite alternate;
+}
+@-webkit-keyframes planet{
+    0%{
+        transform: scale(1) rotate(0deg) translateY(0px) translateZ(0);
+    }
+    /*75%{*/
+    /*    transform: scale(2.125) rotate(146.25deg) translateY(-15px) translateZ(0);*/
+    /*}*/
+    100%{
+        transform: scale(2.5) rotate(195deg) translateY(-20px) translateZ(0);
+    }
 }
 @-webkit-keyframes load{
     0%{
