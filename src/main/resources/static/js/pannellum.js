@@ -159,7 +159,7 @@ uiContainer.appendChild(dragFix);
 var aboutMsg = document.createElement('span');
 aboutMsg.className = 'pnlm-about-msg';
 aboutMsg.innerHTML = '<a href="https://pannellum.org/" target="_blank">Pannellum</a>';
-uiContainer.appendChild(aboutMsg);
+//uiContainer.appendChild(aboutMsg);
 dragFix.addEventListener('contextmenu', aboutMessage);
 
 // Create info display

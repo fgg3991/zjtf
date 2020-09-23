@@ -72,6 +72,8 @@
 <body>
     <script>
         function hasLoad(){
+            console.log("hasLoad");
+            $(".home-img-container").remove()
             //setTimeout(function(){$(".home-img-container").remove()}, 400);
             console.log("contact me:875167792@qq.com");
         }
@@ -83,7 +85,8 @@
                 "hfov": hfov, //缩放
                 "pitch":-44.293,
                 "yaw": 3.530,
-                "load":hasLoad(),
+                "load":hasLoad,
+                "sceneFadeDuration":1000,
                 "hotSpotDebug": true,
                 "panorama": "/img/panoramaViewImg/panorama.jpg",
                 "preview":"/img/panoramaViewImg/preview.jpg",

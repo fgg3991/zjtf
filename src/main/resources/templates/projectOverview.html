@@ -41,6 +41,7 @@
         let view = getSimple();
         let viewer = pannellum.viewer('panorama', view);
         $(".slot-animate").click(function () {
+            //viewer.setPose($(this).attr("pit"),-50);
             viewer.setPitch($(this).attr("pit"),500);
         });
         $(".slot-traffic").click(function () {
