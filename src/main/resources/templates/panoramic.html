@@ -102,12 +102,14 @@
         <p id="url" th:text="${url}"></p>
     </div>
 </div>
+<div id="panorama1"></div>
 <script>
     let link = window.location.href.split("?")[0];
     if(link !== window.location.href)
     {
         window.location.href = link;
     }
+    viewer = undefined;
     debug = true;
     hfov = isMobile() ?55:120;
     roomfov = isMobile()?80:120;
@@ -125,7 +127,6 @@
             ]
         });
         wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
-            //alert("config验证成功");
             let shareData = {
                 title: "蓉泰·紫金天府·微沙盘", // 分享标题
                 desc: "蓉泰·紫金天府【人文府邸 名仕大宅】115㎡-198㎡生态花语洋房。", // 分享描述
@@ -266,7 +267,7 @@
             url:url,
             type:"get",
             success:function (e){
-                $("#panorama").html(e);
+                $("#panorama1").html(e);
                 $(".menu-content").hide();
             }
         });

@@ -28,7 +28,7 @@
 </style>
 <div class="hotspot-choose" >
     <div class="hotspot-slot slot-traffic life">交&nbsp;&nbsp;通</div>
-    <div class="hotspot-slot slot-animate life" pit="-42.25">商&nbsp;&nbsp;业</div>
+    <div class="hotspot-slot slot-animate life" pit="-42.25" onclick="LookAt(-42.25,50)">商&nbsp;&nbsp;业</div>
     <div class="hotspot-slot slot-animate life" pit="-29.55">市&nbsp;&nbsp;政</div>
     <div class="hotspot-slot slot-animate life" pit="-19.55">教&nbsp;&nbsp;育</div>
     <div class="hotspot-slot slot-animate life" pit="-9.55">生&nbsp;&nbsp;态</div>
@@ -39,84 +39,63 @@
 <script>
     $(document).ready(function () {
         let view = getSimple();
-        let viewer = pannellum.viewer('panorama', view);
+        console.log(viewer.getScene()+"\n"+view);
+        let sceneId = $(".simple-content-action").attr("link");
+        viewer.addScene(sceneId,view);
+        viewer.loadScene(sceneId);
+        //let viewer = pannellum.viewer('panorama', view);
         $(".slot-animate").click(function () {
-            //viewer.setPose($(this).attr("pit"),-50);
-            viewer.setPitch($(this).attr("pit"),500);
+            viewer.lookAt($(this).attr("pit"),50,viewer.getHfov(),500);
         });
         $(".slot-traffic").click(function () {
             $(".life").hide();
             $(".traffic").show();
-            pannellum.viewer('panorama', {
-                "showControls":false,
-                "autoLoad":true,
-                "hfov": hfov*0.83, //缩放
+            viewer.addScene("traffic",{
                 "pitch":-86.644,
                 "yaw": 7.208,
-                "hotSpotDebug": debug,
                 "panorama": "/img/projectOverview/traffic.jpg",
             });
+            viewer.loadScene("traffic");
         });
     });
+    function LookAt(p,y){
+
+    }
     function getSimple(){
         let object =
             {
                 "panorama": {
-                    "showControls":false,
-                    "autoLoad":true,
-                    "hfov": hfov, //缩放
                     "pitch":-44.293,
                     "yaw": 3.530,
-                    "hotSpotDebug": debug,
                     "panorama": "/img/panoramaViewImg/panorama.jpg",
                     "preview":"/img/panoramaViewImg/preview.jpg",
                 },
                 "business":{
-                    "showControls":false,
-                    "autoLoad":true,
-                    "hfov": hfov, //缩放
                     "pitch":-42.956,
                     "yaw": 0.622,
-                    "hotSpotDebug": debug,
                     "panorama": "/img/projectOverview/business.jpg",
                     "hotSpots":getHotSpot("business")
                 },
                 "apartment":{
-                    "showControls":false,
-                    "autoLoad":true,
-                    "hfov": hfov, //缩放
                     "pitch":-44.293,
                     "yaw": 3.530,
-                    "hotSpotDebug": debug,
                     "panorama": "/img/projectOverview/apartment.jpg",
                     "hotSpots":getHotSpot("apartment")
                 },
                 "industry":{
-                    "showControls":false,
-                    "autoLoad":true,
-                    "hfov": hfov, //缩放
                     "pitch":-47.321,
                     "yaw": 20.150,
-                    "hotSpotDebug": debug,
                     "panorama": "/img/projectOverview/industry.jpg",
                 },
                 "life":{
-                    "showControls":false,
-                    "autoLoad":true,
-                    "hfov": hfov, //缩放
                     "pitch":-28.701,
                     "yaw": 2.712,
-                    "hotSpotDebug": debug,
                     "panorama": "/img/projectOverview/life.jpg",
                     "hotSpots":getHotSpot("life")
                 },
                 "traffic":{
-                    "showControls":false,
-                    "autoLoad":true,
-                    "hfov": hfov, //缩放
                     "pitch":-47.321,
                     "yaw": 20.150,
-                    "hotSpotDebug": debug,
                     "panorama": "/img/projectOverview/traffic.jpg",
                 }
             };

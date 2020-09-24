@@ -241,15 +241,14 @@
     height: 30px;
 }
 .home-img-container{
-    display: none;
     position: absolute;
     left: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
     z-index: 9995;
-    /*display: -webkit-flex; !* Safari *!*/
-    /*display: flex;*/
+    display: -webkit-flex; /* Safari */
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
