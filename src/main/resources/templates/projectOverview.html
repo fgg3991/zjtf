@@ -35,6 +35,9 @@
     <div class="hotspot-slot slot-animate life" pit="0.55">医&nbsp;&nbsp;疗</div>
     <div class="hotspot-slot slot-animate traffic" pit="-29.55">主干道</div>
     <div class="hotspot-slot slot-animate traffic" pit="-29.55">地铁</div>
+    <div class="hotspot-slot industry" link="industry" pit="-29.55">学校</div>
+    <div class="hotspot-slot industry" link="industry1" pit="-29.55">医院</div>
+    <div class="hotspot-slot industry" link="industry2" pit="-29.55">公园</div>
 </div>
 <script>
     $(document).ready(function () {
@@ -47,27 +50,31 @@
         $(".slot-animate").click(function () {
             viewer.lookAt($(this).attr("pit"),50,viewer.getHfov(),500);
         });
+        //渲染交通全景图
         $(".slot-traffic").click(function () {
             $(".life").hide();
             $(".traffic").show();
-            viewer.addScene("traffic",{
-                "pitch":-86.644,
-                "yaw": 7.208,
-                "panorama": "/img/projectOverview/traffic.jpg",
-            });
+            viewer.addScene("traffic",getSimple("traffic"));
             viewer.loadScene("traffic");
+        });
+        //渲染产业圈全景图
+        $(".industry").click(function () {
+            let sceneId = $(this).attr("link");
+            viewer.addScene(sceneId,getSimple(sceneId));
+            viewer.loadScene(sceneId);
         });
     });
     function LookAt(p,y){
 
     }
-    function getSimple(){
+    function getSimple(sceneId){
         let object =
             {
                 "panorama": {
                     "pitch":-44.293,
                     "yaw": 3.530,
-                    "panorama": "/img/panoramaViewImg/panorama.jpg",
+                    "load":hasLoad,
+                    "panorama": "/img/panoramaViewImg/panorama2.jpg",
                     "preview":"/img/panoramaViewImg/preview.jpg",
                 },
                 "business":{
@@ -85,7 +92,95 @@
                 "industry":{
                     "pitch":-47.321,
                     "yaw": 20.150,
-                    "panorama": "/img/projectOverview/industry.jpg",
+                    "panorama": "/img/projectOverview/circle_school.jpg",
+                    "hotSpots":[
+                        {
+                            "id":"spot-circle",
+                            "pitch": -37.187,
+                            "yaw": 69.058,
+                            "text": "天府一中,天府一小"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -18.168,
+                            "yaw":  8.867,
+                            "text": "仁寿一中"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -16.111,
+                            "yaw": -17.0637,
+                            "text": "嘉祥外国语学院"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -26.771,
+                            "yaw": -13.156,
+                            "text": "视高小学,视高中学"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -45.028,
+                            "yaw": -11.504,
+                            "text": "钢铁中学"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -51.143,
+                            "yaw": 16.592,
+                            "text": "钢铁小学"
+                        }
+                    ]
+                },
+                "industry1":{
+                    "pitch":-47.321,
+                    "yaw": 20.150,
+                    "panorama": "/img/projectOverview/circle_park.jpg",
+                    "hotSpots":[
+                        {
+                            "id":"spot-circle",
+                            "pitch":-34.117,
+                            "yaw": 43.064,
+                            "text": "寨子山公园"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -29.188,
+                            "yaw":  -20.433,
+                            "text": "柴桑河湿地公园"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -16.853,
+                            "yaw": -98.158,
+                            "text": "南天府公园"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -68.147,
+                            "yaw": -68.990,
+                            "text": "帽顶山公园"
+                        }
+                    ]
+                },
+                "industry2":{
+                    "pitch":-47.321,
+                    "yaw": 20.150,
+                    "panorama": "/img/projectOverview/circle_hospital.jpg",
+                    "hotSpots":[
+                        {
+                            "id":"spot-circle",
+                            "pitch":-51.535,
+                            "yaw": 16.563,
+                            "text": "天府视高医院"
+                        },
+                        {
+                            "id":"spot-circle",
+                            "pitch": -36.131,
+                            "yaw":  -77.57,
+                            "text": "日本东京女子医院"
+                        }
+                    ]
                 },
                 "life":{
                     "pitch":-28.701,
@@ -99,9 +194,14 @@
                     "panorama": "/img/projectOverview/traffic.jpg",
                 }
             };
-        let simple = $(".simple-content-action").attr("link");
-        $("."+simple).show();
-        return object[simple];
+        //如果传了sceneId则直接返回对应scene
+        if(sceneId != undefined){
+            return object[sceneId];
+        }
+        //未传参数则获取被选中的菜单中的sceneId,并且显示以sceneId为类名的按钮
+        sceneId = $(".simple-content-action").attr("link");
+        $("."+sceneId).show();
+        return object[sceneId];
     }
 
     function getHotSpot(slot){

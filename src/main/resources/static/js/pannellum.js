@@ -397,6 +397,7 @@ function init() {
                 var img = this.response;
                 parseGPanoXMP(img);
                 infoDisplay.load.msg.innerHTML = '';
+                hasLoad();
             };
             xhr.onprogress = function(e) {
                 if (e.lengthComputable) {
