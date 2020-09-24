@@ -108,6 +108,7 @@
                     "yaw": 2.712,
                     "hotSpotDebug": debug,
                     "panorama": "/img/projectOverview/life.jpg",
+                    "hotSpots":getHotSpot("life")
                 },
                 "traffic":{
                     "showControls":false,
@@ -144,11 +145,29 @@
             ],
             "apartment":[
                 {
-                    "id":"spot-bus",
+                    "id":"spot-apa",
                     "pitch": -51.290,
                     "yaw": 25.974,
                     "createTooltipFunc": imgSpot,
                     "createTooltipArgs": "13.png"
+                }
+            ],
+            "life":[
+                {
+                    "id":"spot-type-1",
+                    "pitch": -29.380,
+                    "yaw": 2.822,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "天地园"
+                },
+                {
+                    "id":"spot-type-1",
+                    "pitch": -29.380,
+                    "yaw": 22.822,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "天地园1"
                 }
             ]
         };
