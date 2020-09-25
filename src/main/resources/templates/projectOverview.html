@@ -28,13 +28,13 @@
 </style>
 <div class="hotspot-choose" >
     <div class="hotspot-slot load-scene life" link="traffic">交&nbsp;&nbsp;通</div>
-    <div class="hotspot-slot slot-animate life" pit="-42.25" onclick="LookAt(-42.25,50)">商&nbsp;&nbsp;业</div>
-    <div class="hotspot-slot slot-animate life" pit="-29.55">市&nbsp;&nbsp;政</div>
-    <div class="hotspot-slot slot-animate life" pit="-19.55">教&nbsp;&nbsp;育</div>
-    <div class="hotspot-slot slot-animate life" pit="-9.55">生&nbsp;&nbsp;态</div>
-    <div class="hotspot-slot slot-animate life" pit="0.55">医&nbsp;&nbsp;疗</div>
-    <div class="hotspot-slot slot-animate traffic" pit="-29.55">主干道</div>
-    <div class="hotspot-slot slot-animate traffic" pit="-29.55">地铁</div>
+    <div class="hotspot-slot  life" slot="spot-Business" onclick="LookAt(-25.45,110.14)">商&nbsp;&nbsp;业</div>
+    <div class="hotspot-slot  life" slot="spot-government" onclick="LookAt(-8.68,-56.57)">市&nbsp;&nbsp;政</div>
+    <div class="hotspot-slot  life" slot="spot-school" onclick="LookAt(-29.43,-245.71)">教&nbsp;&nbsp;育</div>
+    <div class="hotspot-slot  life" slot="spot-park" onclick="LookAt(-27.02,-102.67)">生&nbsp;&nbsp;态</div>
+    <div class="hotspot-slot  life" slot="spot-hospital" onclick="LookAt(-30.27,-39.45)">医&nbsp;&nbsp;疗</div>
+    <div class="hotspot-slot  traffic" pit="-29.55">主干道</div>
+    <div class="hotspot-slot  traffic" pit="-29.55">地铁</div>
     <div class="hotspot-slot load-scene landscape" link="landscape1" >景观1</div>
     <div class="hotspot-slot load-scene landscape" link="landscape2" >景观2</div>
     <div class="hotspot-slot load-scene landscape" link="landscape3" >景观3</div>
@@ -51,10 +51,6 @@
         let sceneId = $(".simple-content-action").attr("link");
         viewer.addScene(sceneId,view);
         viewer.loadScene(sceneId);
-        //切换视角
-        $(".slot-animate").click(function () {
-            viewer.lookAt($(this).attr("pit"),50,viewer.getHfov(),500);
-        });
         //渲染全景图
         $(".load-scene").click(function () {
             let sceneId = $(this).attr("link");
@@ -63,9 +59,27 @@
             viewer.addScene(sceneId,getSimple(sceneId));
             viewer.loadScene(sceneId);
         });
+        //切换热点
+        $(".hotspot-slot").click(function(){
+            //remove old spot
+            let oldSpot =getHotSpot($(".hotspot-action").attr("slot"));
+            if(oldSpot!=undefined) {
+                for (let i = 0; i < oldSpot.length; i++) {
+                    viewer.removeHotSpot(oldSpot[i].id);
+                }
+            }
+            //add new spot
+            let newSpot =getHotSpot($(this).attr("slot"));
+            for(let i=0;i<newSpot.length;i++){
+                viewer.addHotSpot(newSpot[i]);
+            }
+            $(this).addClass("hotspot-action");
+            $(this).siblings().removeClass("hotspot-action");
+        });
     });
+    //切换视角
     function LookAt(p,y){
-
+        viewer.lookAt(p,y,viewer.getHfov(),800);
     }
     function getSimple(sceneId){
         let object =
@@ -74,13 +88,13 @@
                     "pitch":-44.293,
                     "yaw": 3.530,
                     "load":hasLoad,
-                    "panorama": "/img/panoramaViewImg/panorama2.jpg",
+                    "panorama": "/img/panoramaViewImg/panorama.jpg",
                     "preview":"/img/panoramaViewImg/preview.jpg",
                 },
                 "business":{
                     "pitch":-42.956,
                     "yaw": 0.622,
-                    "panorama": "/img/projectOverview/business.jpg",
+                    "panorama": "/img/projectOverview/apartment.jpg",
                     "hotSpots":getHotSpot("business")
                 },
                 "apartment":{
@@ -197,7 +211,7 @@
                     "panorama": "/img/park/basketball.jpg",
                 },
                 "landscape":{
-                    "panorama": "/img/panoramaViewImg/panorama2.jpg",
+                    "panorama": "/img/panoramaViewImg/panorama.jpg",
                 },
                 "landscape1":{
                     "panorama": "/img/park/landscape1.jpg",
@@ -237,38 +251,422 @@
                 },
                 {
                     "id":"spot-bus",
+                    "pitch": -38.305,
+                    "yaw": -38.747,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "unit1build3.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -47.358,
+                    "yaw": -47.347,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "2.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -49.961,
+                    "yaw": -33.084,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "3.png"
+                },
+                {
+                    "id":"spot-bus",
                     "pitch": -46.751,
                     "yaw": -14.027,
                     "createTooltipFunc": imgSpot,
                     "createTooltipArgs": "4.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -39.693,
+                    "yaw": -9.888,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "5.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -43.235,
+                    "yaw": 2.531,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "6.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -48.460,
+                    "yaw": 3.167,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "7.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -54.664,
+                    "yaw": 3.676,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "8.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -38.748,
+                    "yaw": 8.918,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "9.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -44.647,
+                    "yaw": 9.428,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "10.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -51.097,
+                    "yaw": 11.709,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "11.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -41.684,
+                    "yaw": 17.971,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "12.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -50.595,
+                    "yaw": 27.329,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "13.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -37.875,
+                    "yaw": 24.213,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "14.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -42.7132,
+                    "yaw": 30.459,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "15.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -46.6107,
+                    "yaw":39.137,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "16.png"
                 }
+
             ],
             "apartment":[
                 {
-                    "id":"spot-apa",
-                    "pitch": -51.290,
-                    "yaw": 25.974,
+                    "id":"spot-bus",
+                    "pitch": -29.464,
+                    "yaw": -28.038,
                     "createTooltipFunc": imgSpot,
-                    "createTooltipArgs": "13.png"
-                }
-            ],
-            "life":[
-                {
-                    "id":"spot-type-1",
-                    "pitch": -29.380,
-                    "yaw": 2.822,
-                    "cssClass": "custom-hotspot,spot1,park",
-                    "createTooltipFunc": hotspot,
-                    "createTooltipArgs": "天地园"
+                    "createTooltipArgs": "unit1build1.png"
                 },
                 {
-                    "id":"spot-type-1",
-                    "pitch": -29.380,
-                    "yaw": 22.822,
+                    "id":"spot-bus",
+                    "pitch": -38.305,
+                    "yaw": -38.747,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "unit1build3.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -47.358,
+                    "yaw": -47.347,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "2.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -49.961,
+                    "yaw": -33.084,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "3.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -46.751,
+                    "yaw": -14.027,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "4.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch": -39.693,
+                    "yaw": -9.888,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "5.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -43.235,
+                    "yaw": 2.531,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "6.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -48.460,
+                    "yaw": 3.167,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "7.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -54.664,
+                    "yaw": 3.676,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "8.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -38.748,
+                    "yaw": 8.918,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "9.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -44.647,
+                    "yaw": 9.428,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "10.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -51.097,
+                    "yaw": 11.709,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "11.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -41.684,
+                    "yaw": 17.971,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "12.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -50.595,
+                    "yaw": 27.329,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "13.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -37.875,
+                    "yaw": 24.213,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "14.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -42.7132,
+                    "yaw": 30.459,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "15.png"
+                },
+                {
+                    "id":"spot-bus",
+                    "pitch":  -46.6107,
+                    "yaw":39.137,
+                    "createTooltipFunc": imgSpot,
+                    "createTooltipArgs": "16.png"
+                }
+
+            ],
+            "spot-school":[
+                {
+                    "id":"spot-school",
+                    "pitch": -18.32,
+                    "yaw": 88.60,
                     "cssClass": "custom-hotspot,spot1,park",
                     "createTooltipFunc": hotspot,
-                    "createTooltipArgs": "天地园1"
-                }
+                    "createTooltipArgs": "天府一中,天府一小"
+                },
+                {
+                    "id":"spot-school",
+                    "pitch": -15.14,
+                    "yaw": 149.13,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "四川科技职业学院一期"
+                },
+                {
+                    "id":"spot-school",
+                    "pitch": -13.36,
+                    "yaw": 86.74,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "四川科技职业学院二期"
+                },
+            ],
+            "spot-park":[
+                {
+                    "id":"spot-park",
+                    "pitch": -16.66,
+                    "yaw": -155.63,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "帽顶山生态公园"
+                },
+                {
+                    "id":"spot-park",
+                    "pitch": -20.21,
+                    "yaw": 52.82,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "寨子山公园"
+                },
+                {
+                    "id":"spot-park",
+                    "pitch": -5.60,
+                    "yaw": -107.36,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "南天府生态公园"
+                },
+                {
+                    "id":"spot-park",
+                    "pitch": -2.07,
+                    "yaw": -113.57,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "黑龙滩国家4A级旅游风景区"
+                },
+                {
+                    "id":"spot-park",
+                    "pitch": -13.44,
+                    "yaw": -57.36,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "柴桑河湿地公园"
+                },
+                {
+                    "id":"spot-park",
+                    "pitch": -4.93,
+                    "yaw": -114.37,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "乐高乐园"
+                },
+                {
+                    "id":"spot-park",
+                    "pitch": -6.32,
+                    "yaw": -101.62,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "法国勒芒文化体育园区"
+                },
+            ],
+            "spot-Business":[
+                {
+                    "id":"spot-Business",
+                    "pitch": -23.63,
+                    "yaw": 110.99,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "家园佳居国际城"
+                },
+            ],
+            "spot-property":[
+                {
+                    "id":"spot-property",
+                    "pitch": -23.01,
+                    "yaw": -0.95,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "天府讯动人工智能孵化器"
+                },
+                {
+                    "id":"spot-property",
+                    "pitch": -10.04,
+                    "yaw": 13.96,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "加州智慧城"
+                },
+                {
+                    "id":"spot-property",
+                    "pitch": -11.96,
+                    "yaw": 9.63,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "联想叠云创新科技园"
+                },
+                {
+                    "id":"spot-property",
+                    "pitch": -13.76,
+                    "yaw": 4.83,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "中日国际康养城"
+                },
+                {
+                    "id":"spot-property",
+                    "pitch": -8.75,
+                    "yaw": -104.81,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "川港合作园"
+                },
+                {
+                    "id":"spot-property",
+                    "pitch": -9.10,
+                    "yaw": -99.69,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "联想叠云创新科技园三期"
+                },
+            ],
+            "spot-hospital":[
+                {
+                    "id":"spot-hospital",
+                    "pitch": -12.11,
+                    "yaw": -95.99,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "日本东京女子医院"
+                },
+                {
+                    "id":"spot-hospital",
+                    "pitch": -50.91,
+                    "yaw": 16.89,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "天府视高医院"
+                },
+                {
+                    "id":"spot-hospital",
+                    "pitch": -7.97,
+                    "yaw": 14.77,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "华西医院天府分院"
+                },
+            ],
+            "spot-government":[
+                {
+                    "id":"spot-government",
+                    "pitch": -7.55,
+                    "yaw": -56.26,
+                    "cssClass": "custom-hotspot,spot1,park",
+                    "createTooltipFunc": hotspot,
+                    "createTooltipArgs": "天府新区眉山管委会"
+                },
+            ],
+            "life":[
+
             ]
         };
         return object[slot];
@@ -282,7 +680,6 @@
         hotSpotDiv.appendChild(div);
     }
     function imgSpot(hotSpotDiv, args) {
-        let div = document.createElement('div');
         let img = $('<img src="/img/icon/'+args+'" class="spot-img" />');
         $(hotSpotDiv).append(img);
     }
