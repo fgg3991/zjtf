@@ -27,7 +27,7 @@
     }
 </style>
 <div class="hotspot-choose" >
-    <div class="hotspot-slot slot-traffic life">交&nbsp;&nbsp;通</div>
+    <div class="hotspot-slot load-scene life" link="traffic">交&nbsp;&nbsp;通</div>
     <div class="hotspot-slot slot-animate life" pit="-42.25" onclick="LookAt(-42.25,50)">商&nbsp;&nbsp;业</div>
     <div class="hotspot-slot slot-animate life" pit="-29.55">市&nbsp;&nbsp;政</div>
     <div class="hotspot-slot slot-animate life" pit="-19.55">教&nbsp;&nbsp;育</div>
@@ -35,9 +35,14 @@
     <div class="hotspot-slot slot-animate life" pit="0.55">医&nbsp;&nbsp;疗</div>
     <div class="hotspot-slot slot-animate traffic" pit="-29.55">主干道</div>
     <div class="hotspot-slot slot-animate traffic" pit="-29.55">地铁</div>
-    <div class="hotspot-slot industry" link="industry" pit="-29.55">学校</div>
-    <div class="hotspot-slot industry" link="industry1" pit="-29.55">医院</div>
-    <div class="hotspot-slot industry" link="industry2" pit="-29.55">公园</div>
+    <div class="hotspot-slot load-scene landscape" link="landscape1" >景观1</div>
+    <div class="hotspot-slot load-scene landscape" link="landscape2" >景观2</div>
+    <div class="hotspot-slot load-scene landscape" link="landscape3" >景观3</div>
+    <div class="hotspot-slot load-scene landscape" link="landscape4" >景观4</div>
+    <div class="hotspot-slot load-scene landscape" link="landscape5" >景观5</div>
+    <div class="hotspot-slot load-scene industry" link="industry" >学校</div>
+    <div class="hotspot-slot load-scene industry" link="industry1" >医院</div>
+    <div class="hotspot-slot load-scene industry" link="industry2" >公园</div>
 </div>
 <script>
     $(document).ready(function () {
@@ -46,20 +51,15 @@
         let sceneId = $(".simple-content-action").attr("link");
         viewer.addScene(sceneId,view);
         viewer.loadScene(sceneId);
-        //let viewer = pannellum.viewer('panorama', view);
+        //切换视角
         $(".slot-animate").click(function () {
             viewer.lookAt($(this).attr("pit"),50,viewer.getHfov(),500);
         });
-        //渲染交通全景图
-        $(".slot-traffic").click(function () {
-            $(".life").hide();
-            $(".traffic").show();
-            viewer.addScene("traffic",getSimple("traffic"));
-            viewer.loadScene("traffic");
-        });
-        //渲染产业圈全景图
-        $(".industry").click(function () {
+        //渲染全景图
+        $(".load-scene").click(function () {
             let sceneId = $(this).attr("link");
+            $(".life").hide();
+            $("."+sceneId).show();
             viewer.addScene(sceneId,getSimple(sceneId));
             viewer.loadScene(sceneId);
         });
@@ -192,6 +192,27 @@
                     "pitch":-47.321,
                     "yaw": 20.150,
                     "panorama": "/img/projectOverview/traffic.jpg",
+                },
+                "basketball":{
+                    "panorama": "/img/park/basketball.jpg",
+                },
+                "landscape":{
+                    "panorama": "/img/panoramaViewImg/panorama2.jpg",
+                },
+                "landscape1":{
+                    "panorama": "/img/park/landscape1.jpg",
+                },
+                "landscape2":{
+                    "panorama": "/img/park/landscape2.jpg",
+                },
+                "landscape3":{
+                    "panorama": "/img/park/landscape3.jpg",
+                },
+                "landscape4":{
+                    "panorama": "/img/park/landscape4.jpg",
+                },
+                "landscape5":{
+                    "panorama": "/img/park/landscape5.jpg",
                 }
             };
         //如果传了sceneId则直接返回对应scene

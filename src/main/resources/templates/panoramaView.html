@@ -72,16 +72,16 @@
 <body>
     <script>
         function hasLoad(){
-            console.log("load");
             $(".home-img-container").remove();
-            console.log("contact me:875167792@qq.com");
+            //console.log("contact me:875167792@qq.com");
         }
         $(document).ready(function (){
             // Create viewer
+            $("#panorama").html("");
             viewer = pannellum.viewer('panorama', {
                 "default": {
                     "firstScene": "panorama",
-                    "sceneFadeDuration": 2000,
+                    "sceneFadeDuration": 1500,
                     "hotSpotDebug": true,
                     "showControls":false,
                     "hfov": hfov, //缩放
