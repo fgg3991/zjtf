@@ -20,6 +20,26 @@
             padding: 0;
             overflow: hidden;
         }
+        .nav-simple{
+            display: none;
+            position: absolute;
+            right: -5em;
+            bottom: 0;
+            font-size: 12px;
+            height: 4em;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .nav-app{
+            display: none;
+            position: absolute;
+            bottom: 86px;
+            margin: 10px;
+        }
+        .progess-percent{
+            position: absolute;
+            z-index: 9;
+            transform: translateZ(1px) scale(0.8);
+        }
     </style>
 </head>
 <body>
@@ -29,7 +49,7 @@
         <div class="panorama-menu menu-panorama-view action" >
             <div class="menu-content menu-simple-content">
                 <div class="menu-text nav-page" link="AreaMap">城市信息</div>
-                <div class="menu-text nav-panorama" type="projectOverview" link="life">配套</div>
+                <div class="menu-text nav-panorama" type="projectOverview" link="traffic">配套</div>
                 <div class="menu-text nav-panorama" type="projectOverview" link="industry">产业圈</div>
             </div>
             <i style="background-position-x: -55px;"></i><span>区域规划</span>
@@ -44,56 +64,51 @@
         </div>
         <div class="panorama-menu menu-park " >
             <div class="menu-content menu-simple-content">
-                <div class="menu-text nav-panorama" type="projectOverview" link="basketball">市政篮球公园</div>
+                <div class="menu-text nav-panorama" type="projectOverview" link="basketball">篮球公园</div>
                 <div class="menu-text nav-panorama" type="projectOverview" link="landscape">五大景观</div>
-                <div class="menu-text ">60S小视频</div>
+                <div class="menu-text ">宣传视频</div>
             </div>
             <i style="background-position-x: -337px;"></i><span>景观鉴赏</span>
         </div>
         <div class="panorama-menu menu-room-type" >
             <div class="menu-content menu-simple-content">
                 <div class="menu-text nav-page" link="RoomType">户型分布</div>
-                <div class="menu-text" link="simple2">户型鉴赏</div>
-                <div class="menu-text nav-panorama" type="simple" link="simple4">实体样板间</div>
+                <div class="menu-text nav-panorama " type="child" >户型鉴赏
+                    <div class="nav-simple">
+                        <div class="nav-panorama simple-content" style="margin: 0.6em" type="simple"  link="simple3">100平</div>
+                        <div class="nav-panorama simple-content" type="simple" link="simple4">122平</div>
+                    </div>
+                </div>
+                <div class="menu-text">实体样板间</div>
             </div>
             <i style="background-position-x: -478px;"></i><span>户型鉴赏</span>
         </div>
-        <div class="panorama-menu menu-others1" >
+        <div class="panorama-menu menu-others1" navShow="true">
             <div class="menu-content menu-simple-content">
-                <div class="menu-text" link="simple1">品牌</div>
-                <div class="menu-text" link="simple2">地图</div>
-                <div class="menu-text" link="simple3">电话</div>
+                <div class="menu-text" id="ad" >品牌</div>
+                <div class="menu-text " id="map" >地图</div>
+                <div class="menu-text" id="tel" >电话</div>
             </div>
             <i style="background-position-x: -619px;"></i><span>联系方式</span>
         </div>
     </div>
+    <div onclick="window.location.href ='tel:02835018888'" class="content-tel">联系电话：028-35018888</div>
+    <div class="nav-app">
+        <a href="https://apis.map.qq.com/uri/v1/marker?marker=coord:30.242496,104.073143;title:%E7%B4%AB%E9%87%91%E5%A4%A9%E5%BA%9C%E5%9F%8E;addr:%E5%9B%9B%E5%B7%9D%E7%9C%81%E7%9C%89%E5%B1%B1%E5%B8%82%E4%BB%81%E5%AF%BF%E5%8E%BF%E5%A4%A9%E5%BA%9C%E5%A4%A7%E9%81%93%E8%BE%85%E8%B7%AF&amp;referer=myapp" target="_blank">腾讯地图</a>
+        <a href="https://uri.amap.com/marker?position=104.073143,30.242496&name=紫金天府城&src=mypage&coordinate=gaode&callnative=0">高德地图</a>
+        <a href="http://api.map.baidu.com/marker?location=30.246075,104.07948&title=紫金天府城&content=四川省眉山市仁寿县天府大道辅路&output=html&src=webapp.baidu.openAPIdemo">百度地图</a>
+    </div>
     <div class="content-div" >
-        <div class="menu-others-content">
-            <div class="others-content-div">
-                <div class="others-content tel"></div>
-                <div class="others-content music" play="true"></div>
-                <div class="others-content map"></div>
-            </div>
-        </div>
-        <div class="menu-content1 others-content-tel1">
-            <div onclick="window.location.href ='tel:09948360888'" class="content-tel">联系电话：0994-8360888</div>
-            <div class="content-tel" style="transform: scale(0.7)">地址：新疆吉木萨尔县孚远路与文明西路交汇处</div>
-        </div>
         <div class="room-navigate">
             <div class="room-navigate-img"></div>
             <div class="room-navigate-icon" status="hide"></div>
         </div>
     </div>
     <div class="home-img-container">
-        <div class="loading">
-            <div>资源加载中</div>
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <img id="home-img" src="/img/home.png">
+        <div class="progess-percent">0%</div>
     </div>
-<!--    <div class="planet">-->
-<!--        <img id="planet-img" src="/img/panoramaViewImg/planet1.jpg"></div>-->
-<!--    </div>-->
+    <div class="ad-img-container"></div>
+<!--    <img id="ad-img" src="/img/ad.jpg">-->
     <div style="display: none">
         <p id="appId" th:text="${appid}"></p>
         <p id="timestamp" th:text="${timestamp}"></p>
@@ -104,16 +119,39 @@
 </div>
 <div id="panorama1"></div>
 <script>
+    //encodeURI
     let link = window.location.href.split("?")[0];
     if(link !== window.location.href)
     {
         window.location.href = link;
     }
+    mapRender = 0;
     viewer = undefined;
     debug = true;
-    hfov = isMobile() ?55:120;
-    roomfov = isMobile()?80:120;
+    hfov = isMobile() ?60:120;
+    roomfov = isMobile()?60:120;
+    interval = undefined;
+    loop=0;
+    interval = window.setInterval(iconAnimate,100);
+    function iconAnimate(){
+        $(".simple-hotspot>.icon-bg").css("background-position-y",(-12-40*loop)+"px");
+        if(loop === 9){
+            loop=0;
+        }else {
+            loop++;
+        }
+    }
     $(document).ready(function (){
+        //计算进度元素显示位置
+        let x =710/1619;
+        let y =1475/2549;
+        let bgP =2549/1619;
+        let width =window.innerWidth;
+        let height =window.innerHeight;
+        let bgH = width*bgP;
+        let calh =(height-bgH)/2;
+        $(".progess-percent").css({"left":width*x+"px","top":(bgH*y+calh)+"px"});
+
         let url=$("#url").text();//location.href;
         wx.config({
             debug: false,
@@ -149,33 +187,75 @@
         // wbmg_MusicManager.regist('background', '/music/Leaf-white-album.mp3');
         // wbmg_MusicManager.play( 'background' );
         $(".panorama-menu").click(function(){
+            $(".content-tel").hide();
+            if($(this).attr("navShow") === undefined){
+                $(".nav-app").hide();
+            }
+            $(".load-tip").hide();
             $(this).addClass("action");
             $(this).siblings().removeClass("action");
             if($(this).attr("link") === "Simple" ||$(this).attr("link") === "Others"){return;}
-            let url = "/get"+$(this).attr("link");
             //子菜单展示
             let target = $(this).children(".menu-content");
             let flag = target.is(':visible');
             $(".menu-content").hide();
-            if (flag){
+            if (flag) {
                 target.hide();
-            }else {
+            } else {
                 target.show();
             }
             //menuClick (url);
-            //hideNavigate();
+            $(".room-navigate").hide();
+            hideNavigate();
         });
         $(".menu-simple").click(function () {
             $(".menu-others-content").hide();
             $(".menu-simple-content").toggle();
         });
+        $(".menu-text").click(function () {
+            $(".hotspot-slot-view").hide();
+            $(".ad-img-container").hide();
+        });
         //全景图跳转
         $(".nav-panorama").click(function () {
+            event.stopPropagation();
             let type = $(this).attr("type");
+            if(type === "child"){
+                $(".nav-simple").toggle();
+                return;
+            }
+            if(mapRender === 1){
+                mapRender = 0;
+                $("#panorama").html("");
+                viewer = pannellum.viewer('panorama', {
+                    "default": {
+                        "firstScene": "panorama",
+                        "sceneFadeDuration": 1500,
+                        //"hotSpotDebug": true,
+                        "showControls":false,
+                        "hfov": hfov, //缩放
+                        "autoLoad":true
+                    },
+                    "scenes": {
+                        "panorama":{
+                            "pitch":-44.293,
+                            "yaw": 3.530,
+                            "panorama": "/img/panoramaViewImg/panorama.jpg",
+                        }
+                    }
+                });
+            }
             if(type){
-                console.log(type);
                 $(".nav-panorama").removeClass("simple-content-action");
                 $(this).addClass("simple-content-action");
+                if(type === "simple"){
+                    //户型导航坐标点样式添加
+                    let navType = $(this).attr("link");
+                    let navPos = $(".navigate-position");
+                    navPos.removeClass("nav-pos-simple3");
+                    navPos.removeClass("nav-pos-simple4");
+                    navPos.addClass("nav-pos-"+navType);
+                }
                 menuClick("/"+type+ "?token=" + new Date().getTime());
             }
         });
@@ -204,14 +284,21 @@
                 hideNavigate();
             }
         });
-
-        $(".tel").click(function () {
+        $("#ad").click(function () {
+            $(".ad-img-container").show();
+        });
+        $("#tel").click(function () {
+            event.stopPropagation();
+            $(".content-tel").toggle();
             telfun();
         });
         $(".music").click(function () {
             musicfun();
         });
-        $(".map").click(function () {
+        $("#map").click(function () {
+            event.stopPropagation();
+            $(".nav-panorama").removeClass("simple-content-action");
+            $(".nav-app").show();
             mapfun();
         });
 
@@ -230,6 +317,12 @@
         e.preventDefault();
     });
 
+    function peogressHander(e) {
+        console.log("hander:"+(e+'').substring(0,4));
+        let html = (e+'').substring(0,4)+"%";
+        $(".progess-percent").html(html);
+    }
+    
     function telfun(){
         $(".content-tel").css("float","none");
         $(".others-content-tel").toggle();
@@ -245,9 +338,10 @@
         }
     }
     function mapfun(){
+        mapRender = 1;
         $(".room-navigate").hide();
-        let x = 89.175425;
-        let y = 44.005049;
+        let x = 104.07948;
+        let y = 30.246075;
         let ggPoint = new BMap.Point(x,y);
         //地图初始化
         let bm = new BMap.Map("panorama");
@@ -256,10 +350,8 @@
         //添加gps marker和label
         let markergg = new BMap.Marker(ggPoint);
         bm.addOverlay(markergg); //添加GPS marker
-        let labelgg = new BMap.Label("紫金天府",{offset:new BMap.Size(20,-10)});
+        let labelgg = new BMap.Label("紫金天府城",{offset:new BMap.Size(20,-10)});
         markergg.setLabel(labelgg);
-        //window.location.href="https://j.map.baidu.com/68/2m7";
-        //window.location.href="https://api.map.baidu.com/marker?location=89.17508830044554,43.999179718354405&title=楼盘位置&content=紫金天府&output=html";
     }
 
     function menuClick (url){
@@ -267,8 +359,14 @@
             url:url,
             type:"get",
             success:function (e){
-                $("#panorama1").html(e);
+                if(url.indexOf("AreaMap")!==-1 || url.indexOf("RoomType")!==-1){
+                    $("#panorama").html("");
+                    $("#panorama").html(e);
+                }else {
+                    $("#panorama1").html(e);
+                }
                 $(".menu-content").hide();
+                $(".nav-simple").hide();
             }
         });
     }
@@ -332,7 +430,7 @@
     function hideNavigate(){
         $(".room-navigate-icon").attr("status","hide");
         $(".room-navigate-icon").css({'background-image': 'url(/img/simpleImg/show-icon.png)'});
-        $(".room-navigate").css({'transform': 'translateX(-250px)'});
+        $(".room-navigate").css({'transform': 'translateX(-275px)'});
     }
     function showNavigate() {
         $(".room-navigate-icon").attr("status","show");

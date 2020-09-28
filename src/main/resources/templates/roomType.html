@@ -51,7 +51,7 @@
             height: 100vh;
             top: 0;
             position: absolute;
-            z-index: 9999;
+            z-index: 999;
             pointer-events: none;
             background: none;
         }
@@ -88,7 +88,7 @@
         .room-full-image{
             position: absolute;
             width: 100vw;
-            height: 50vh;
+            height: 80vh;
             left: 0;
             top: 0;
             z-index: 0;
@@ -145,7 +145,6 @@
 
             </div>
         </div>
-        <img class="room-bg2-img" src="/img/roomImg/bg2.png" />
     </div>
     <script>
         $(document).ready(function(){
@@ -169,7 +168,7 @@
             $(window).resize(function () {
                 $(".room-full-image").css({
                     "width":'100vw',
-                    "height":"50vh"
+                    "height":"80vh"
                 })
                 let change = $(".room-full-change-div");
                 change.css({
