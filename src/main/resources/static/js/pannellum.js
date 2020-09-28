@@ -73,7 +73,7 @@ var config,
 
 var defaultConfig = {
     hfov: 110,
-    minHfov: 50,
+    minHfov: 30,
     multiResMinHfov: false,
     maxHfov: 120,
     pitch: 0,
@@ -418,6 +418,7 @@ function init() {
                         numerator = e.loaded;
                         denominator = e.total;
                     }
+                    peogressHander(percent);
                     infoDisplay.load.msg.innerHTML = numerator + ' / ' + denominator + ' ' + unit;
                 } else {
                     // Display loading spinner
