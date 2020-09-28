@@ -72,7 +72,6 @@
 <body>
     <script>
         function hasLoad(){
-            window.setTimeout(500);
             $(".home-img-container").remove();
         }
         $(document).ready(function (){
@@ -81,27 +80,18 @@
             viewer = pannellum.viewer('panorama', {
                 "default": {
                     "firstScene": "panorama",
-                    "sceneFadeDuration": 1200,
-                    //"hotSpotDebug": true,
+                    "sceneFadeDuration": 1500,
+                     "hotSpotDebug": true,
                     "showControls":false,
                     "hfov": hfov, //缩放
                     "autoLoad":true
                 },
                 "scenes": {
                     "panorama":{
-                        "pitch": -25.456,
-                        "yaw": -0.558,
-                        "hfov": hfov, //缩放
+                        "pitch":-44.293,
+                        "yaw": 3.530,
                         "panorama": "/img/panoramaViewImg/panorama.jpg",
-                        "hotSpots":[
-                            {
-                                "id":"logo",
-                                "pitch": -28.304,
-                                "yaw": -0.399,
-                                "createTooltipFunc": imgSpot,
-                                "createTooltipArgs": "logo.png"
-                            }
-                        ]
+                        "hotSpots":getHotSpotSlot()
                     }
                 }
             });
@@ -134,10 +124,6 @@
             span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
             span.style.marginTop = -span.scrollHeight + 'px';
         }
-        function imgSpot(hotSpotDiv, args) {
-            let img = $('<img src="/img/icon/'+args+'" class="spot-img-logo" />');
-            $(hotSpotDiv).append(img);
-        }
         function logospot(hotSpotDiv, args) {
             let div = document.createElement('div');
             let img = $('<img src="/img/logo.png" class="logo-spot-img" />');
@@ -154,10 +140,244 @@
                         "cssClass": "custom-hotspot,spot1,park",
                         "createTooltipFunc": hotspot,
                         "createTooltipArgs": "北庭园"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -25.06,
+                        "yaw": -73.21,
+                        "cssClass": "custom-hotspot,spot1,park",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "天地园"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -54.02,
+                        "yaw": -59.32,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "文化中心"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -38.05,
+                        "yaw": -143.87,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "豪威酒店"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -19.96,
+                        "yaw": 23.46,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "住宅用地"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -21.12,
+                        "yaw": 56.43,
+                        "cssClass": "custom-hotspot,spot1,park",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "植物园"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -43.88,
+                        "yaw": 137.53,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "北庭商贸城"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -25.31,
+                        "yaw": -14.45,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "积善堂中医医院"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -39.92,
+                        "yaw": -53.74,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县妇幼保健站"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -42.41,
+                        "yaw": 76.01,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县医院"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -26.34,
+                        "yaw": 110.91,
+                        "cssClass": "custom-hotspot,spot1,hospital",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县中医医院"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -36.79,
+                        "yaw": 77.91,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "吉木萨尔县政府"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -17.99,
+                        "yaw": 110.96,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "吉木萨尔镇政府"
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -24.65,
+                        "yaw": 28.80,
+                        "cssClass": "custom-hotspot,spot1",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "农贸市场"
+                    }],
+                "spot2" : [
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -36.75,
+                        "yaw": -16.59,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "第三中学"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -30.47,
+                        "yaw": -7.57,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县二幼"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -21.48,
+                        "yaw": -43.56,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县三小"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -28.51,
+                        "yaw": 85.68,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县一小"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -77.84,
+                        "yaw": -155.14,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县二中"
+                    },
+                    {
+                        "id":"spot-type-2",
+                        "pitch": -57.95,
+                        "yaw": 149.72,
+                        "cssClass": "custom-hotspot,spot2,school",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "县二小"
+                    }],
+                "spot3" : [
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -23.94,
+                        "yaw": 18.39,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "孚远路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -28.26,
+                        "yaw": 79.33,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "北庭路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -24.12,
+                        "yaw": -3.66,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "天山路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -39.20,
+                        "yaw": 41.69,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "满城路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -53.90,
+                        "yaw": -1.62,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "文化西路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -61.82,
+                        "yaw": -34.39,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "民主巷"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -47.36,
+                        "yaw": -47.21,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "中心路"
+                    },
+                    {
+                        "id":"spot-type-3",
+                        "pitch": -43.77,
+                        "yaw": 53.09,
+                        "cssClass": "custom-hotspot,spot3",
+                        "createTooltipFunc": hotspot,
+                        "createTooltipArgs": "文明路"
                     }]
             };
             if(slot){
                 return object[slot];
+            }else{
+                let spot=[
+                    {
+                        "id":"logo",
+                        "pitch": -27.75,
+                        "yaw": 7.52,
+                        "cssClass": "custom-tooltip",
+                        "createTooltipFunc": logospot,
+                        "createTooltipArgs": "logo"
+                    }
+                ];
+                //页面初始化时slot为undefined，此时将logo加入热点中
+                // for(let obj in object){
+                //     spot = spot.concat(object[obj]);
+                // }
+                return spot;
             }
         }
     </script>
