@@ -14,22 +14,6 @@
             margin: 0;
             padding: 0;
         }
-        .room-bg-img{
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            left: 0;
-            top: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .room-bg2-img{
-            width: 100vw;
-            height: unset;
-            top: 4%;
-            position: absolute;
-            z-index: 9999;
-        }
         .room-container{
             flex-shrink: 0;
             width: 100vw;
@@ -60,64 +44,110 @@
             animation: imgTwinkle 1s infinite linear;
             -webkit-animation: imgTwinkle 1s infinite linear;
         }
-        .room-full-pic{
+
+        .room-type{
+            position: absolute;
+            top: 60px;
+            left: 2%;
+            right: 2%;
+        }
+        .type-div{
+            display: flex;
+            justify-content: space-around;
+            padding: 0 15px;
+            margin: 10px 0;
+        }
+        .room-div{
+            margin-top: 15px;
+        }
+        .types{
+            width: 78px;
+            height: 34px;
+        }
+        .s1{
+            background: url("/img/roomImg/A1.png");
+            background-size: 100% 100%;
+        }
+        .s1.active{
+            background: url("/img/roomImg/A1click.png");
+            background-size: 100% 100%;
+        }
+        .s2{
+            background: url("/img/roomImg/A2.png");
+            background-size: 100% 100%;
+        }
+        .s2.active{
+            background: url("/img/roomImg/A2click.png");
+            background-size: 100% 100%;
+        }
+        .s3{
+            background: url("/img/roomImg/B.png");
+            background-size: 100% 100%;
+        }
+        .s3.active{
+            background: url("/img/roomImg/Bclick.png");
+            background-size: 100% 100%;
+        }
+        .s4{
+            background: url("/img/roomImg/C1.png");
+            background-size: 100% 100%;
+        }
+        .s4.active{
+            background: url("/img/roomImg/C1click.png");
+            background-size: 100% 100%;
+        }
+        .s5{
+            background: url("/img/roomImg/C2.png");
+            background-size: 100% 100%;
+        }
+        .s5.active{
+            background: url("/img/roomImg/C2click.png");
+            background-size: 100% 100%;
+        }
+        .s6{
+            background: url("/img/roomImg/D.png");
+            background-size: 100% 100%;
+        }
+        .s6.active{
+            background: url("/img/roomImg/Dclick.png");
+            background-size: 100% 100%;
+        }
+        .room{
+            display: none;
+            width: 100%;
+        }
+        .room.active{
+            display: block;
+        }
+        .tip{
+            margin-top: 15px;
+            text-align: center;
+        }
+        .tip img{
+            width: 45%;
+        }
+        .infobox{
             position: absolute;
             width: 100vw;
             height: 100vh;
             top: 0;
             left: 0;
-            z-index: 1;
-            background: none;
+            z-index: 999;
+            background: #ffffff;
             margin: 0;
+            display: none;
+            text-align: center;
         }
-        .room-full-change-div{
-            position: relative;
-            width: 100vw;
-            z-index: 1;
-            display: flex;
-            transition-property: transform;
-            box-sizing: content-box;
-            transform: translate3d(0px, 0px, 0px);
-            transition-duration: 500ms;
+        .info{
+            display: none;
         }
-        .room-full-item{
-            flex-shrink: 0;
-            width: 100vw;
-            position: relative;
+        .info.active{
+            display: block;
+            width: 100%;
         }
-        .room-full-image{
-            position: absolute;
-            width: 100vw;
-            height: 80vh;
-            left: 0;
-            top: 0;
-            z-index: 0;
-            pointer-events: none;
+        .infotip{
+            width: 45%;
         }
-        .room-change{
-            position: absolute;
-            top: 50%;
-            width: 14px;
-            height: 22px;
-            margin-top: -22px;
-            z-index: 10;
-            cursor: pointer;
-            background-size: 14px 22px;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
-        .room-change-next{
-            background-image: url(/img/right-arrow.svg);
-            right: 10px;
-            left: auto;
-
-        }
-        .room-change-prev{
-            background-image: url(/img/left-arrow.svg);
-            left: 10px;
-            right: auto;
-        }
-
     </style>
 </head>
 <body>
@@ -125,84 +155,91 @@
         <div class="room-main">
             <div class="room-container" >
                 <!-- 区位一 -->
-                <img class="room-main-pic" src="/img/roomImg/apartment.jpg" />
-                <div>
-                    <img class="room-float-pic s1 float-animation" src="/img/roomImg/roomFloat1.png"/>
-                    <img class="room-float-pic s2" src="/img/roomImg/roomFloat2.png"/>
-                </div>
-                <section class="room-full-pic" >
-                    <div class="room-full-change-div" order=0>
-                        <div class="room-full-item " >
-                            <img class="room-full-image" src="/img/roomImg/roomType1.png">
+                <img class="room-main-pic" src="/img/roomImg/apartment1.png" />
+                <img class="rotate1 room-float-pic float-animation" src="/img/roomImg/roomFloatA1.png" >
+                <img class="rotate2 room-float-pic" src="/img/roomImg/roomFloatA2.png" >
+                <img class="rotate3 room-float-pic" src="/img/roomImg/roomFloatB.png" >
+                <img class="rotate4 room-float-pic" src="/img/roomImg/roomFloatC1.png" >
+                <img class="rotate5 room-float-pic" src="/img/roomImg/roomFloatC2.png" >
+                <img class="rotate6 room-float-pic" src="/img/roomImg/roomFloatD.png" >
+
+                <div class="room-type">
+                    <div>
+                        <div class="type-div">
+                            <div class="types s1 active" onclick=roomImgChange(1)></div>
+                            <div class="types s2" onclick=roomImgChange(2)></div>
+                            <div class="types s3" onclick=roomImgChange(3)></div>
                         </div>
-                        <div class="room-full-item " >
-                            <img class="room-full-image" src="/img/roomImg/roomType2.png">
+                        <div class="type-div">
+                            <div class="types s4" onclick=roomImgChange(4)></div>
+                            <div class="types s5" onclick=roomImgChange(5)></div>
+                            <div class="types s6" onclick=roomImgChange(6)></div>
                         </div>
                     </div>
-                    <div class="room-change room-change-next" onclick=roomImgChange(1)></div>
-                    <div class="room-change room-change-prev" onclick=roomImgChange(2)></div>
-                </section>
+                    <div class="room-div">
+                        <img class="room room1 active" src="/img/roomImg/A1room.png">
+                        <img class="room room2" src="/img/roomImg/A2room.png">
+                        <img class="room room3" src="/img/roomImg/Broom.png">
+                        <img class="room room4" src="/img/roomImg/C1room.png">
+                        <img class="room room5" src="/img/roomImg/C2room.png">
+                        <img class="room room6" src="/img/roomImg/Droom.png">
+                    </div>
+                    <div class="tip">
+                        <img src="/img/roomImg/tip.png">
+                    </div>
+                </div>
+                <!--详情图片-->
+                <div class="infobox">
+                    <img class="info info1" src="/img/roomImg/infoA1.png">
+                    <img class="info info2" src="/img/roomImg/infoA2.png">
+                    <img class="info info3" src="/img/roomImg/infoB.png">
+                    <img class="info info4" src="/img/roomImg/infoC1.png">
+                    <img class="info info5" src="/img/roomImg/infoC2.png">
+                    <img class="info info6" src="/img/roomImg/infoD.png">
+                    <img class="infotip" src="/img/roomImg/tip2.png">
+                </div>
 
             </div>
         </div>
     </div>
     <script>
+        let roomtype = 1; //户型序号
         $(document).ready(function(){
-            let startX;
+            let startY;
             $("body").on("touchstart", function(e) {
-                startX = e.originalEvent.changedTouches[0].pageX;
+                startY = e.originalEvent.changedTouches[0].pageY;
             });
             $("body").on("touchend", function(e) {
-                let moveEndX = e.originalEvent.changedTouches[0].pageX,
-                    X = moveEndX - startX;
-                //左滑
-                if ( X > 0 ) {
-                    roomImgChange(2);
+                let moveEndY = e.originalEvent.changedTouches[0].pageY,
+                    X = moveEndY - startY;
+                //上滑
+                if ( X < 0 ) {
+                    $(".infobox").css({'display':'block'})
+                    let targetroom = $(".info");
+                    targetroom.removeClass("active");
+                    $(".info"+roomtype).addClass('active')
                 }
-                //右滑
-                else if ( X < 0 ) {
-                    roomImgChange(1);
+                //下滑
+                else if ( X > 0 ) {
+                    $(".infobox").css({'display':'none'})
                 }
-            });
-
-            $(window).resize(function () {
-                $(".room-full-image").css({
-                    "width":'100vw',
-                    "height":"80vh"
-                })
-                let change = $(".room-full-change-div");
-                change.css({
-                    'transform': 'translate3d('+$(window).width()*eval(change.attr("order"))+'px, 0px, 0px)',
-                    'transition-duration': '0ms'
-                });
             });
         });
 
         function roomImgChange(type){
-            console.log("change");
-            let active = $(".float-animation");
-            let change = $(".room-full-change-div");
-            let next = active.next();
-            let prev = active.prev();
-            let width = $(window).width();
-            let picOrder = eval(change.attr("order"));
-            let target;
-            if(type === 1){
-                target = next;
-                picOrder = picOrder-1;
-            }else{
-                target = prev;
-                picOrder = picOrder+1;
-            }
-            if(target.length>0){
-                target.siblings().removeClass("float-animation");
-                target.addClass("float-animation");
-                change.css({
-                    'transform': 'translate3d('+width*picOrder+'px, 0px, 0px)',
-                    'transition-duration': '500ms'
-                });
-                change.attr("order",picOrder);
-            }
+            roomtype = type
+            let target = $(".types");
+            target.removeClass("active");
+            $(".s"+type).addClass('active')
+
+            let roomtarget = $(".room");
+            roomtarget.removeClass("active");
+            $(".room"+type).addClass('active')
+
+            let roomrotate = $(".room-float-pic");
+            roomrotate.removeClass("float-animation");
+            $(".rotate"+type).addClass('float-animation')
+
         }
     </script>
 </body>

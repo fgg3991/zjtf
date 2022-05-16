@@ -4,9 +4,12 @@
     margin: 0;
     overflow: hidden;
 }
-.menu-div{
+.top-toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
     color: white;
-    display: block;
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
     width: 100vw;
@@ -14,40 +17,93 @@
     padding: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    top: 0;
     margin: auto;
     margin-top: 0;
     box-shadow: 0 0 2px 0 #666;
     z-index: 9990;
+}
+.top-toolbar>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:48vw;
+}
+.menu-div{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 45px;
+    width: 95vw;
+    height: 56px;
+    padding: 0;
+    left: 0;
+    right: 0;
+    bottom: 22px;
+    margin: auto;
+    margin-top: 0;
+    box-shadow: 0 0 2px 0 #666;
+    z-index: 9990;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-user-select: none;
+    -moz-user-focus: ignore;
+    -moz-user-select: none;
+}
+.menu-div1{
+    position: absolute;
+    left: -60px;
+    bottom: 22px;
 }
 .panorama-menu{
     cursor: pointer;
     position: relative;
     display: block;
     float: left;
-    width: 20vw;
+    width: 15vw;
     height: 50px;
     margin: 0;
     padding: 0;
 }
+.panorama-menu-control{
+    width: 50px;
+    height: 50px;
+}
+.panorama-menu-control img{
+    width: 50px;
+}
 .panorama-menu i{
     display: block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    top: 4px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0;
+}
+.top-toolbar i{
+    display: inline-block;
     position: relative;
     background: url(/img/menu.png) no-repeat;
     background-size: 702px 140px;
     background-position-y: -26px;
-    width: 32px;
-    height: 32px;
+    width: 20px;
+    height: 20px;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 0 10px 0 10px;
     padding: 0;
 }
 .panorama-menu span{
     display: block;
     position: relative;
     color: rgb(255, 255, 255);
-    top: -3px;
+    top: 4px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -83,8 +139,8 @@
     width: auto;
     height: 17px;
     border: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     margin-left: 10px;
     margin-right: 10px;
     float: none;
@@ -92,7 +148,7 @@
     text-decoration: none;
     text-align: center;
     color: #ffffff;
-    border-bottom: 3px solid rgba(0, 0, 0, 0);
+    border-bottom: 5px solid rgba(0, 0, 0, 0);
 }
 .menu-text-action{
     color: rgb(233,184,132);

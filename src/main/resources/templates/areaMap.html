@@ -6,32 +6,146 @@
     <link rel="stylesheet" href="/css/zy.media.min.css">
     <script src="/js/zy.media.min.js"></script>
     <style>
-        #modelView{height: 100%;width: 100%;position: relative;}
-        .playvideo{padding-top: auto;z-index: 9988;position: relative;}
-        .zy_media{z-index: 9989}
+        body{
+            background-color: #151829;
+        }
+        .area_map{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            z-index: 999;
+        }
+        .area_map img{
+            width: 100vw;
+        }
+        .float_img{
+            position: fixed;
+        }
+        .animate_container{
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .animate_container span{
+            font-size: 12px;
+            color: white;
+            transform: scale(0.8);
+            margin-top: -10px;
+        }
+        .animate_container img{
+            width: 50px !important;
+        }
+        .animate_container1{
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .animate_container1 span{
+            font-size: 12px;
+            color: white;
+            transform: scale(0.8);
+            margin-top: 60px;
+            margin-left: -20px;
+        }
+        .animate_container1 img{
+            width: 50px !important;
+        }
     </style>
 </head>
 <body>
-    <div class="playvideo" >
-        <div class="zy_media">
-            <video poster="/video/video.jpg" data-config='{"mediaTitle": "紫金天府介绍"}'>
-                <source src="/video/introduce.mp4" type="video/mp4">
-                您的浏览器不支持HTML5视频
-            </video>
+    <div class="area_map" >
+        <img src="/img/areaImg/base.png">
+        <div class="float_img">
+            <div class="float_item float1" style="display: none">
+                <img src="/img/areaImg/float1.png" >
+                <div class="animate_container1" style="left: 65vw;top: 10vh;">
+                    <img src="/img/animate.png">
+                    <span>化隆县群科新区中学</span>
+                </div>
+                <div class="animate_container" style="left: 64vw;top: 12vh;">
+                    <img src="/img/animate.png">
+                    <span>化隆县职业</span><span style="margin-top: -6px;">技术学院</span>
+                </div>
+                <div class="animate_container" style="left: 62vw;top: 24vh;">
+                    <img src="/img/animate.png">
+                    <span>群科新区</span><span style="margin-top: -6px;">小天鹅幼儿园</span>
+                </div>
+                <div class="animate_container" style="left: 28vw;top: 43vh;">
+                    <img src="/img/animate.png">
+                    <span>拟建工农</span><span style="margin-top: -6px;">兵中学</span>
+                </div>
+                <div class="animate_container1" style="left: 46vw;top: 45vh;">
+                    <img src="/img/animate.png">
+                    <span>群科新区幼儿园</span>
+                </div>
+                <div class="animate_container1" style="left: 48vw;top: 47vh;">
+                    <img src="/img/animate.png">
+                    <span>工农兵小学</span>
+                </div>
+            </div>
+            <div class="float_item float2" style="display: none">
+                <img src="/img/areaImg/float2.png" >
+                <div class="animate_container" style="left: 9vw;top: 10vh;">
+                    <img src="/img/animate.png">
+                    <span>黄河绿</span><span style="margin-top: -6px;">洲生态</span>
+                </div>
+                <div class="animate_container" style="left: 9vw;top: 18vh;">
+                    <img src="/img/animate.png">
+                    <span>顿珠林卡</span><span style="margin-top: -6px;">度假村</span>
+                </div>
+                <div class="animate_container" style="left: 10vw;top: 37vh;">
+                    <img src="/img/animate.png">
+                    <span>滨河</span><span style="margin-top: -6px;">景观区</span>
+                </div>
+                <div class="animate_container" style="left: 11vw;top: 60vh;">
+                    <img src="/img/animate.png">
+                    <span>滨河</span><span style="margin-top: -6px;">景观区</span>
+                </div>
+                <div class="animate_container1" style="left: 53vw;top: 9vh;">
+                    <img src="/img/animate.png">
+                    <span>新世纪购物广场</span>
+                </div>
+                <div class="animate_container" style="left: 54vw;top: 12vh;">
+                    <img src="/img/animate.png">
+                    <span>小商品市场</span>
+                </div>
+                <div class="animate_container" style="left: 69vw;top: 45vh;">
+                    <img src="/img/animate.png">
+                    <span>拉面中心</span>
+                </div>
+            </div>
+            <div class="float_item float3">
+                <img src="/img/areaImg/float3.png" >
+                <div class="animate_container" style="left: 53vw;top: 36vh;">
+                    <img src="/img/animate.png">
+                    <span>新区客运中心</span>
+                </div>
+            </div>
+            <div class="float_item float1" style="display: none">
+                <img src="/img/areaImg/float1.png" >
+                <div class="animate_container" style="left: 30vw;top: 16vh;">
+                    <img src="/img/animate.png">
+                    <span>县人民医院</span>
+                </div>
+                <div class="animate_container" style="left: 44vw;top: 17vh;">
+                    <img src="/img/animate.png">
+                    <span>化隆惠民医院</span>
+                </div>
+            </div>
         </div>
-        <div id="modelView">&nbsp;</div>
     </div>
     <script>
         mapRender=1;
         document.body.style.overflow='hidden';
-        zymedia('video',{autoplay: false});
-        var screenheight = window.screen.height/2;
-        $("#modelView").width(window.screen.width);
-        $("#modelView").height(window.screen.height);
-        var videoheight = $(".zy_media").height()/2;
-        var padding_top = screenheight-videoheight-56;
-        $(".playvideo").css({"top":padding_top});
-        $("#modelView").css({"margin-top":-1*(padding_top+$(".zy_media").height())});
+
     </script>
 </body>
 </html>

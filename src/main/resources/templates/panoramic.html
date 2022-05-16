@@ -3,14 +3,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"  name="viewport" />
     <title>鑫源·星河湾</title>
     <link rel="stylesheet" href="/css/pannellum.css"/>
     <link rel="stylesheet" href="/css/panoramic.css"/>
     <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/js/pannellum.js"></script>
     <script type="text/javascript" src="/js/libpannellum.js"></script>
-    <script type="text/javascript" src="//api.map.baidu.com/api?v=3.0&ak=sIp370V564Qe2foGr29z2MnMFZIDVI4c"></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
     <style>
         body{
@@ -29,79 +28,108 @@
             height: 4em;
             background-color: rgba(0,0,0,0.5);
         }
-        .nav-app{
-            display: none;
-            position: absolute;
-            bottom: 86px;
-            margin: 10px;
-        }
         .progess-percent{
             position: absolute;
             z-index: 9;
             transform: translateZ(1px) scale(0.8);
         }
+        .area_list div{
+            display: inline-block;
+        }
+        .area_item{
+            font-size: 14px;
+            padding: 2px;
+            transform: translate(-4px,-1px);
+        }
+        .area_item_line{
+            transform: translate(-4px,-3.5px);
+        }
+        .item_active{
+            background-color: #a59165c2
+        }
+        .pan-tiny{
+            position: absolute;
+            left: 0;
+            bottom: 150px;
+            background: url(/img/pan-control.png) no-repeat;
+            background-size: 100% 100%;
+            padding: 10px 0 10px 0;
+            height: 60px;
+        }
+        .pan-tiny img{
+            width: 83px;
+        }
+        .pan-tiny1{
+            position: absolute;
+            left: -65px;
+            bottom: 150px;
+        }
+        .pan-tiny1 img{
+            width: 54px;
+        }
+
     </style>
 </head>
 <body>
 <div class="main-div">
+    <div class="top-toolbar" style="background: url(/img/top.png) no-repeat;background-size: 150%;">
+        <div style="flex-direction: row-reverse;margin-top: -10px;"><i style="background: url(/img/music.png) no-repeat;top: 3px;background-size: 100%;"></i><span>|</span><i style="background: url(/img/phone.png) no-repeat; top: 3px;background-size: 100%;"></i></div>
+    </div>
     <div class="panoramic-div" id="panorama"></div>
     <div class="menu-div">
-        <div class="panorama-menu menu-panorama-view action" >
-            <div class="menu-content menu-simple-content">
-                <div class="menu-text nav-page" link="AreaMap">全景鸟瞰</div>
-                <div class="menu-text nav-panorama" type="projectOverview" link="traffic">配套</div>
-                <div class="menu-text nav-panorama" type="projectOverview" link="industry">产业圈</div>
-            </div>
-            <i style="background-position-x: -55px;"></i><span>区域规划</span>
+        <div class="panorama-menu-control" >
+            <img src="/img/menu-control.png" />
         </div>
-        <div class="panorama-menu menu-area" >
-            <div class="menu-content menu-simple-content">
-                <div class="menu-text nav-panorama" type="projectOverview" link="panorama">鸟瞰图</div>
-                <div class="menu-text nav-panorama" type="projectOverview" link="business">商业地块</div>
-                <div class="menu-text nav-panorama" type="projectOverview" link="apartment">住宅地块</div>
+        <!--<div class="panorama-menu-main">-->
+            <div class="panorama-menu menu-panorama-view nav-page action" link="PanoramaView" link1="Pan">
+                <div class="menu-content menu-simple-content">
+                    <!-- <div class="menu-text nav-page" link="PanoramaView">全景鸟瞰1</div> -->
+                </div>
+                <i style="background: url(/img/menu1.png) no-repeat; background-size: 100%;"></i><span>全景鸟瞰</span>
             </div>
-            <i style="background-position-x: -200px;"></i><span>项目概况</span>
-        </div>
-        <div class="panorama-menu menu-park " >
-            <div class="menu-content menu-simple-content">
-                <div class="menu-text nav-panorama" type="projectOverview" link="basketball">篮球公园</div>
-                <div class="menu-text nav-panorama" type="projectOverview" link="landscape">五大景观</div>
-                <div class="menu-text ">宣传视频</div>
-            </div>
-            <i style="background-position-x: -337px;"></i><span>景观鉴赏</span>
-        </div>
-        <div class="panorama-menu menu-room-type" >
-            <div class="menu-content menu-simple-content">
-                <div class="menu-text nav-page" link="RoomType">户型分布</div>
-                <div class="menu-text nav-panorama " type="child" >户型鉴赏
-                    <div class="nav-simple">
-                        <div class="nav-panorama simple-content" style="margin: 0.6em" type="simple"  link="simple3">100平</div>
-                        <div class="nav-panorama simple-content" type="simple" link="simple4">122平</div>
+            <div class="panorama-menu menu-area nav-page" link="AreaMap" >
+                <div class="menu-content menu-simple-content" style="width:153px;height: 26px; border-radius: 45px; padding: 0 10px;bottom: 67px;">
+                    <div class="menu-text nav-panorama area_list" style="margin: 0">
+                        <div class="area_item item_active" link="2" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">交通</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="area_item" link="0">教育</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="area_item" link="1">商业</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="area_item" link="3" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">医疗</div>
                     </div>
                 </div>
-                <div class="menu-text">实体样板间</div>
+                <i style="background: url(/img/menu2.png) no-repeat; background-size: 100%;"></i><span>互动区位</span>
             </div>
-            <i style="background-position-x: -478px;"></i><span>户型鉴赏</span>
-        </div>
-        <div class="panorama-menu menu-others1" navShow="true">
-            <div class="menu-content menu-simple-content">
-                <div class="menu-text" id="ad" >品牌</div>
-                <div class="menu-text " id="map" >地图</div>
-                <div class="menu-text" id="tel" >电话</div>
+            <div class="panorama-menu menu-park " >
+                <div class="menu-content menu-simple-content">
+                    <!--<div class="menu-text nav-panorama" type="projectOverview" link="basketball">园林景观1</div>-->
+                </div>
+                <i style="background: url(/img/menu3.png) no-repeat; background-size: 100%;"></i><span>园林景观</span>
             </div>
-            <i style="background-position-x: -619px;"></i><span>联系方式</span>
-        </div>
+            <div class="panorama-menu menu-room-type nav-page"  link="RoomType" >
+                <div class="menu-content menu-simple-content">
+
+                </div>
+                <i style="background: url(/img/menu4.png) no-repeat; background-size: 100%;"></i><span>户型鉴赏</span>
+            </div>
+            <div class="panorama-menu menu-room-type1">
+                <div class="menu-content menu-simple-content">
+                    <!--<div class="menu-text nav-page" link="RoomType">样板间1</div>-->
+                </div>
+                <i style="background: url(/img/menu5.png) no-repeat; background-size: 100%;"></i><span>样板间</span>
+            </div>
+        <!--</div>-->
+    </div>
+    <div class="menu-div1">
+        <img src="/img/menu-control1.png" style="width: 56px;">
     </div>
     <div onclick="window.location.href ='tel:02835018888'" class="content-tel">联系电话：028-35018888</div>
-    <div class="nav-app">
-        <a href="https://apis.map.qq.com/uri/v1/marker?marker=coord:30.242496,104.073143;title:%E7%B4%AB%E9%87%91%E5%A4%A9%E5%BA%9C%E5%9F%8E;addr:%E5%9B%9B%E5%B7%9D%E7%9C%81%E7%9C%89%E5%B1%B1%E5%B8%82%E4%BB%81%E5%AF%BF%E5%8E%BF%E5%A4%A9%E5%BA%9C%E5%A4%A7%E9%81%93%E8%BE%85%E8%B7%AF&amp;referer=myapp" target="_blank">腾讯地图</a>
-        <a href="https://uri.amap.com/marker?position=104.073143,30.242496&name=紫金天府城&src=mypage&coordinate=gaode&callnative=0">高德地图</a>
-        <a href="http://api.map.baidu.com/marker?location=30.246075,104.07948&title=紫金天府城&content=四川省眉山市仁寿县天府大道辅路&output=html&src=webapp.baidu.openAPIdemo">百度地图</a>
-    </div>
     <div class="content-div" >
-        <div class="room-navigate">
-            <div class="room-navigate-img"></div>
-            <div class="room-navigate-icon" status="hide"></div>
+        <div class="pan-tiny">
+            <img class="pan-item nav-page" link="PanoramaView" src="/img/panoramaViewImg/pan-tiny1.png">
+            <img class="pan-item" src="/img/panoramaViewImg/pan-tiny.png">
+            <div class="pan-control" style="width: 50px; display: inline-block"></div>
+        </div>
+        <div class="pan-tiny1">
+            <img src="/img/pan-control1.png">
         </div>
     </div>
     <div class="home-img-container">
@@ -125,22 +153,12 @@
     {
         window.location.href = link;
     }
-    mapRender = 0;
     viewer = undefined;
     debug = true;
     hfov = isMobile() ?60:120;
     roomfov = isMobile()?60:120;
     interval = undefined;
     loop=0;
-    interval = window.setInterval(iconAnimate,100);
-    function iconAnimate(){
-        $(".simple-hotspot>.icon-bg").css("background-position-y",(-12-40*loop)+"px");
-        if(loop === 9){
-            loop=0;
-        }else {
-            loop++;
-        }
-    }
     $(document).ready(function (){
         //计算进度元素显示位置
         let x =710/1619;
@@ -186,12 +204,35 @@
         menuClick("/getPanoramaView");
         // wbmg_MusicManager.regist('background', '/music/Leaf-white-album.mp3');
         // wbmg_MusicManager.play( 'background' );
+        //菜单收缩动画
+        $(".panorama-menu-control").click(function () {
+            $(".menu-div").animate({"left":"-780px"},1000);
+            $(".menu-div1").animate({"left":"0"},1000);
+        });
+        $(".menu-div1").click(function () {
+            $(".menu-div1").animate({"left":"-60px"},1000);
+            $(".menu-div").animate({"left":"0"},1000);
+        });
+        //全景图收缩动画
+        $(".pan-tiny").click(function () {
+            panAnimateHide();
+        });
+        $(".pan-tiny1").click(function () {
+            panAnimateShow();
+        });
+        $(".pan-item").click(function (e) {
+            e.stopPropagation();
+        });
         $(".panorama-menu").click(function(){
-            $(".content-tel").hide();
-            if($(this).attr("navShow") === undefined){
-                $(".nav-app").hide();
+            if($(this).attr("link1") === "Pan"){
+                $(".pan-tiny1").show();
+                $(".pan-tiny").show();
+                panAnimateShow();
+            }else{
+                $(".pan-tiny1").hide();
+                $(".pan-tiny").hide();
             }
-            $(".load-tip").hide();
+            $(".content-tel").hide();
             $(this).addClass("action");
             $(this).siblings().removeClass("action");
             if($(this).attr("link") === "Simple" ||$(this).attr("link") === "Others"){return;}
@@ -205,8 +246,6 @@
                 target.show();
             }
             //menuClick (url);
-            $(".room-navigate").hide();
-            hideNavigate();
         });
         $(".menu-simple").click(function () {
             $(".menu-others-content").hide();
@@ -224,27 +263,7 @@
                 $(".nav-simple").toggle();
                 return;
             }
-            if(mapRender === 1){
-                mapRender = 0;
-                $("#panorama").html("");
-                viewer = pannellum.viewer('panorama', {
-                    "default": {
-                        "firstScene": "panorama",
-                        "sceneFadeDuration": 1500,
-                        //"hotSpotDebug": true,
-                        "showControls":false,
-                        "hfov": hfov, //缩放
-                        "autoLoad":true
-                    },
-                    "scenes": {
-                        "panorama":{
-                            "pitch":-44.293,
-                            "yaw": 3.530,
-                            "panorama": "/img/panoramaViewImg/panorama.jpg",
-                        }
-                    }
-                });
-            }
+
             if(type){
                 $(".nav-panorama").removeClass("simple-content-action");
                 $(this).addClass("simple-content-action");
@@ -274,16 +293,17 @@
         $(".menu-others").click(function () {
             $(".menu-simple-content").hide();
             $(".others-content-tel").hide();
-            $(".menu-others-content").toggle("slow");
+            $(".menu-others-content").toggle("slow"); 
         });
 
-        $(".room-navigate-icon").click(function () {
-            if($(this).attr("status") === "hide"){
-                showNavigate();
-            }else{
-                hideNavigate();
-            }
+        //区位切换
+        $(".area_item").click(function (){
+            $(".area_item").removeClass("item_active");
+            $(this).addClass("item_active");
+            $(".float_item").hide();
+            $($(".float_item")[$(this).attr("link")]).show();
         });
+
         $("#ad").click(function () {
             $(".ad-img-container").show();
         });
@@ -295,25 +315,19 @@
         $(".music").click(function () {
             musicfun();
         });
-        $("#map").click(function () {
-            event.stopPropagation();
-            $(".nav-panorama").removeClass("simple-content-action");
-            $(".nav-app").show();
-            mapfun();
-        });
 
     });
+    function panAnimateHide(){
+        $(".pan-tiny").animate({"left":"-280px"},1000);
+        $(".pan-tiny1").animate({"left":"0"},1000);
+    }
+    function panAnimateShow(){
+        $(".pan-tiny1").animate({"left": "-60px"},1000);
+        $(".pan-tiny").animate({"left": "0"},1000);
+    }
 
-    document.getElementsByClassName("tel")[0].addEventListener('touchstart', function(e) {
-        telfun();
-        e.preventDefault();
-    });
     document.getElementsByClassName("music")[0].addEventListener('touchstart', function(e) {
         musicfun();
-        e.preventDefault();
-    });
-    document.getElementsByClassName("map")[0].addEventListener('touchstart', function(e) {
-        mapfun();
         e.preventDefault();
     });
 
@@ -337,22 +351,6 @@
             e.addClass("others-action");
         }
     }
-    function mapfun(){
-        mapRender = 1;
-        $(".room-navigate").hide();
-        let x = 104.07948;
-        let y = 30.246075;
-        let ggPoint = new BMap.Point(x,y);
-        //地图初始化
-        let bm = new BMap.Map("panorama");
-        bm.centerAndZoom(ggPoint, 12);
-        bm.addControl(new BMap.NavigationControl());
-        //添加gps marker和label
-        let markergg = new BMap.Marker(ggPoint);
-        bm.addOverlay(markergg); //添加GPS marker
-        let labelgg = new BMap.Label("紫金天府城",{offset:new BMap.Size(20,-10)});
-        markergg.setLabel(labelgg);
-    }
 
     function menuClick (url){
         $.ajax({
@@ -365,7 +363,7 @@
                 }else {
                     $("#panorama1").html(e);
                 }
-                $(".menu-content").hide();
+                //$(".menu-content").hide();
                 $(".nav-simple").hide();
             }
         });
@@ -427,16 +425,6 @@
         }
     };
 
-    function hideNavigate(){
-        $(".room-navigate-icon").attr("status","hide");
-        $(".room-navigate-icon").css({'background-image': 'url(/img/simpleImg/show-icon.png)'});
-        $(".room-navigate").css({'transform': 'translateX(-275px)'});
-    }
-    function showNavigate() {
-        $(".room-navigate-icon").attr("status","show");
-        $(".room-navigate-icon").css({'background-image': 'url(/img/simpleImg/hide-icon.png)'});
-        $(".room-navigate").css({'transform': 'translateX(0px)'});
-    }
 
 </script>
 
