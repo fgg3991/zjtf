@@ -41,10 +41,18 @@
             padding: 2px;
             transform: translate(-4px,-1px);
         }
+        .room_item{
+            font-size: 14px;
+            padding: 2px;
+            transform: translate(-4px,-1px);
+        }
         .area_item_line{
             transform: translate(-4px,-3.5px);
         }
         .item_active{
+            background-color: #a59165c2
+        }
+        .room_active{
             background-color: #a59165c2
         }
         .pan-tiny{
@@ -58,6 +66,21 @@
         }
         .pan-tiny img{
             width: 83px;
+            opacity: 0.5;
+        }
+        .simple-tiny{
+            display: none;
+            position: absolute;
+            left: 0;
+            bottom: 150px;
+            background: url(/img/pan-control.png) no-repeat;
+            background-size: 100% 100%;
+            padding: 10px 0 10px 0;
+            height: 60px;
+        }
+        .simple-tiny img{
+            width: 83px;
+            opacity: 0.5;
         }
         .pan-tiny1{
             position: absolute;
@@ -66,6 +89,32 @@
         }
         .pan-tiny1 img{
             width: 54px;
+        }
+        .pan-item{
+            opacity: 0.5;
+            width: 80px;
+            height: 62px;
+            display: inline-block;
+        }
+        .pan-item p{
+            position: relative;
+            top: 40px;
+            margin: 0;
+            color: white;
+            text-align: center;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .element::-webkit-scrollbar { width: 0 !important }
+        .simple-nav{
+            display: inline-block;
+            width: 250px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+        .pan-control{
+            width: 50px;
+            display: inline-block
         }
 
     </style>
@@ -98,9 +147,14 @@
                 </div>
                 <i style="background: url(/img/menu2.png) no-repeat; background-size: 100%;"></i><span>互动区位</span>
             </div>
-            <div class="panorama-menu menu-park " >
-                <div class="menu-content menu-simple-content">
-                    <!--<div class="menu-text nav-panorama" type="projectOverview" link="basketball">园林景观1</div>-->
+            <div class="panorama-menu menu-park nav-page" link="Park"  >
+                <div class="menu-content menu-simple-content" style="width:153px;height: 26px; border-radius: 45px; padding: 0 10px;bottom: 67px;margin-left: -22vw">
+                    <div class="menu-text nav-panorama area_list" style="margin: 0">
+                        <div class="park_item item_active" link="2" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">视频1</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="park_item" link="0">视频2</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="park_item" link="1">视频3</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="park_item" link="3" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">视频4</div>
+                    </div>
                 </div>
                 <i style="background: url(/img/menu3.png) no-repeat; background-size: 100%;"></i><span>园林景观</span>
             </div>
@@ -110,9 +164,13 @@
                 </div>
                 <i style="background: url(/img/menu4.png) no-repeat; background-size: 100%;"></i><span>户型鉴赏</span>
             </div>
-            <div class="panorama-menu menu-room-type1">
-                <div class="menu-content menu-simple-content">
-                    <!--<div class="menu-text nav-page" link="RoomType">样板间1</div>-->
+            <div class="panorama-menu menu-park nav-page" link="Simple" link1="Sim">
+                <div class="menu-content menu-simple-content" style="width: 84vw; height: 26px; border-radius: 45px; padding: 0px 10px; bottom: 67px; margin-left: -76vw;">
+                    <div class="menu-text nav-panorama area_list" style="margin: 0">
+                        <div class="room_item room_active" scene="A" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">A1【173.78㎡】</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="room_item" scene="B">B【138.08㎡】</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="room_item" scene="C" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">C1【146.25㎡】</div>
+                    </div>
                 </div>
                 <i style="background: url(/img/menu5.png) no-repeat; background-size: 100%;"></i><span>样板间</span>
             </div>
@@ -124,9 +182,97 @@
     <div onclick="window.location.href ='tel:02835018888'" class="content-tel">联系电话：028-35018888</div>
     <div class="content-div" >
         <div class="pan-tiny">
-            <img class="pan-item nav-page" link="PanoramaView" src="/img/panoramaViewImg/pan-tiny1.png">
-            <img class="pan-item" src="/img/panoramaViewImg/pan-tiny.png">
-            <div class="pan-control" style="width: 50px; display: inline-block"></div>
+            <div class="pan-item pan-change" scene="panorama" style="background: url(/img/panoramaViewImg/pan1-tiny.jpg) no-repeat; opacity: 1">
+                <p>白天</p>
+            </div>
+            <div class="pan-item pan-change" scene="panorama1" style="background: url(/img/panoramaViewImg/pan2-tiny.jpg) no-repeat;">
+                <p>晚上</p>
+            </div>
+            <div class="pan-control"></div>
+        </div>
+        <div class="simple-tiny">
+            <div class="simple-nav simple-a">
+                <div class="pan-item pan-change" scene="livingRoom" style="background: url(/img/simpleImg/A/livingRoom-tiny.jpg);opacity: 1">
+                    <p>客厅</p>
+                </div>
+                <div class="pan-item pan-change" scene="balcony" style="background: url(/img/simpleImg/A/balcony-tiny.jpg) no-repeat;">
+                    <p>阳台</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/simpleImg/A/bedRoom1-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/simpleImg/A/bedRoom2-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/simpleImg/A/bedRoom3-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/simpleImg/A/kitchen-tiny.jpg) no-repeat;">
+                    <p>厨房</p>
+                </div>
+                <div class="pan-item pan-change" scene="toilet" style="background: url(/img/simpleImg/A/toilet-tiny.jpg) no-repeat;">
+                    <p>主卫</p>
+                </div>
+                <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/simpleImg/A/toilet1-tiny.jpg) no-repeat;">
+                    <p>次卫</p>
+                </div>
+            </div>
+            <div class="simple-nav simple-b" style="display: none;">
+                <div class="pan-item pan-change" scene="livingRoom" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;opacity: 1">
+                    <p>客厅</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                    <p>厨房</p>
+                </div>
+                <div class="pan-item pan-change" scene="toilet" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                    <p>主卫</p>
+                </div>
+                <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                    <p>次卫</p>
+                </div>
+            </div>
+            <div class="simple-nav simple-c" style="display: none;">
+                <div class="pan-item pan-change" scene="livingRoom" style="background: url(/img/simpleImg/C/livingRoom-tiny.jpg) no-repeat;opacity: 1;">
+                    <p>客厅</p>
+                </div>
+                <div class="pan-item pan-change" scene="balcony" style="background: url(/img/simpleImg/C/balcony-tiny.jpg) no-repeat;">
+                    <p>阳台</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/simpleImg/C/bedRoom1-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/simpleImg/C/bedRoom2-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/simpleImg/C/bedRoom3-tiny.jpg) no-repeat;">
+                    <p>卧室</p>
+                </div>
+                <div class="pan-item pan-change" scene="bookRoom" style="background: url(/img/simpleImg/C/bookRoom-tiny.jpg) no-repeat;">
+                    <p>书房</p>
+                </div>
+                <div class="pan-item pan-change" scene="entrance" style="background: url(/img/simpleImg/C/entrance-tiny.jpg) no-repeat;">
+                    <p>入户</p>
+                </div>
+                <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/simpleImg/C/kitchen-tiny.jpg) no-repeat;">
+                    <p>厨房</p>
+                </div>
+                <div class="pan-item pan-change" scene="toilet" style="background: url(/img/simpleImg/C/toilet-tiny.jpg) no-repeat;">
+                    <p>主卫</p>
+                </div>
+                <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/simpleImg/C/toilet1-tiny.jpg) no-repeat;">
+                    <p>次卫</p>
+                </div>
+            </div>
+            <div class="pan-control"></div>
         </div>
         <div class="pan-tiny1">
             <img src="/img/pan-control1.png">
@@ -219,11 +365,16 @@
         });
         $(".pan-tiny1").click(function () {
             panAnimateShow();
+            simpleAnimateShow();
+        });
+        $(".simple-tiny").click(function () {
+            simpleAnimateHide();
         });
         $(".pan-item").click(function (e) {
             e.stopPropagation();
         });
         $(".panorama-menu").click(function(){
+            //鸟瞰菜单左侧动画
             if($(this).attr("link1") === "Pan"){
                 $(".pan-tiny1").show();
                 $(".pan-tiny").show();
@@ -232,10 +383,18 @@
                 $(".pan-tiny1").hide();
                 $(".pan-tiny").hide();
             }
+            if($(this).attr("link1") === "Sim"){
+                $(".pan-tiny1").show();
+                $(".simple-tiny").show();
+                simpleAnimateShow();
+            }else{
+                $(".pan-tiny1").hide();
+                $(".simple-tiny").hide();
+            }
             $(".content-tel").hide();
             $(this).addClass("action");
             $(this).siblings().removeClass("action");
-            if($(this).attr("link") === "Simple" ||$(this).attr("link") === "Others"){return;}
+            if($(this).attr("link") === "Others"){return;}
             //子菜单展示
             let target = $(this).children(".menu-content");
             let flag = target.is(':visible');
@@ -245,7 +404,12 @@
             } else {
                 target.show();
             }
-            //menuClick (url);
+        });
+        //切换全景
+        $(".pan-change").click(function () {
+            $(this).siblings().css("opacity","0.5");
+            $(this).css("opacity","1");
+            viewer.loadScene($(this).attr("scene"));
         });
         $(".menu-simple").click(function () {
             $(".menu-others-content").hide();
@@ -283,13 +447,6 @@
             let url = "/get"+$(this).attr("link");
             menuClick (url);
         });
-        $(".simple-content").click(function(){
-            $(".room-navigate").show();
-            $(this).addClass("simple-content-action");
-            $(this).siblings().removeClass("simple-content-action");
-            menuClick("/getSimple");
-            $(".menu-simple-content").hide();
-        });
         $(".menu-others").click(function () {
             $(".menu-simple-content").hide();
             $(".others-content-tel").hide();
@@ -302,6 +459,19 @@
             $(this).addClass("item_active");
             $(".float_item").hide();
             $($(".float_item")[$(this).attr("link")]).show();
+        });
+        //样板间切换
+        $(".room_item").click(function (){
+            $(".simple-nav").hide();
+            switch ($(this).attr("scene")) {
+                case "A":$(".simple-a").show();break;
+                case "B":$(".simple-b").show();break;
+                case "C":$(".simple-c").show();break;
+            }
+            $(".room_item").removeClass("room_active");
+            $(this).addClass("room_active");
+            viewer.loadScene($(this).attr("scene"));
+            menuClick("/getSimple");
         });
 
         $("#ad").click(function () {
@@ -319,11 +489,21 @@
     });
     function panAnimateHide(){
         $(".pan-tiny").animate({"left":"-280px"},1000);
+        $(".pan-tiny1").show();
         $(".pan-tiny1").animate({"left":"0"},1000);
     }
     function panAnimateShow(){
         $(".pan-tiny1").animate({"left": "-60px"},1000);
         $(".pan-tiny").animate({"left": "0"},1000);
+    }
+    function simpleAnimateHide(){
+        $(".simple-tiny").animate({"left":"-320px"},1000);
+        $(".pan-tiny1").show();
+        $(".pan-tiny1").animate({"left":"0"},1000);
+    }
+    function simpleAnimateShow(){
+        $(".pan-tiny1").animate({"left": "-60px"},1000);
+        $(".simple-tiny").animate({"left": "0"},1000);
     }
 
     document.getElementsByClassName("music")[0].addEventListener('touchstart', function(e) {
@@ -357,14 +537,12 @@
             url:url,
             type:"get",
             success:function (e){
-                if(url.indexOf("AreaMap")!==-1 || url.indexOf("RoomType")!==-1){
+                if(url.indexOf("AreaMap")!==-1 || url.indexOf("RoomType")!==-1 ||url.indexOf("Park")!==-1){
                     $("#panorama").html("");
                     $("#panorama").html(e);
                 }else {
                     $("#panorama1").html(e);
                 }
-                //$(".menu-content").hide();
-                $(".nav-simple").hide();
             }
         });
     }

@@ -44,7 +44,7 @@ public class Panoramic {
     public String getRoomType (){
         return "roomType";
     }
-    @RequestMapping(path = {"/simple"})
+    @RequestMapping(path = {"/getSimple"})
     public String getSimple (){
         return "simple";
     }
