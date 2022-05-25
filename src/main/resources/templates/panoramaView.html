@@ -2,16 +2,112 @@
 <html>
 <head>
     <style>
-        .custom-hotspot {
-            height: 25px;
-            width: 50px;
-        }
-        .custom-hotspot>div{
-            height: 25px;
-            width: 25px;
-        }
         .custom-tooltip-div1{
-            border-right: 1px solid rgba(255,255,255,1);
+            width: 25px;
+            height: 120px;
+            margin-top: -120px;
+        }
+        .s1>div{
+            height: 155px;
+            margin-top: -155px;
+            background: url("/img/icon/s1.png") no-repeat;
+            background-size: cover;
+        }
+        .s2>div{
+            height: 130px;
+            margin-top: -130px;
+            background: url("/img/icon/s2.png") no-repeat;
+            background-size: cover;
+        }
+        .s3>div{
+            background: url("/img/icon/s3.png") no-repeat;
+            background-size: cover;
+        }
+        .s4>div{
+            height: 180px;
+            margin-top: -180px;
+            background: url("/img/icon/s4.png") no-repeat;
+            background-size: cover;
+        }
+        .s5>div{
+            height: 179px;
+            margin-top: -179px;
+            background: url("/img/icon/s5.png") no-repeat;
+            background-size: cover;
+        }
+        .s6>div{
+            height: 153px;
+            margin-top: -153px;
+            background: url("/img/icon/s6.png") no-repeat;
+            background-size: cover;
+        }
+        .s7>div{
+            height: 130px;
+            margin-top: -130px;
+            background: url("/img/icon/s7.png") no-repeat;
+            background-size: cover;
+        }
+        .s8>div{
+            background: url("/img/icon/s8.png") no-repeat;
+            background-size: cover;
+        }
+        .s9>div{
+            height: 143px;
+            margin-top: -143px;
+            background: url("/img/icon/s9.png") no-repeat;
+            background-size: cover;
+        }
+        .s10>div{
+            height: 153px;
+            margin-top: -153px;
+            background: url("/img/icon/s10.png") no-repeat;
+            background-size: cover;
+        }
+        .s11>div{
+            height: 132px;
+            margin-top: -132px;
+            background: url("/img/icon/s11.png") no-repeat;
+            background-size: cover;
+        }
+        .s12>div{
+            height: 132px;
+            margin-top: -132px;
+            background: url("/img/icon/s12.png") no-repeat;
+            background-size: cover;
+        }
+        .s13>div{
+            height: 143px;
+            margin-top: -143px;
+            background: url("/img/icon/s13.png") no-repeat;
+            background-size: cover;
+        }
+        .s14>div{
+            background: url("/img/icon/s14.png") no-repeat;
+            background-size: cover;
+        }
+        .s15>div{
+            background: url("/img/icon/s15.png") no-repeat;
+            background-size: cover;
+        }
+        .s16>div{
+            background: url("/img/icon/s16.png") no-repeat;
+            background-size: cover;
+        }
+        .s17>div{
+            background: url("/img/icon/s17.png") no-repeat;
+            background-size: cover;
+        }
+        .s18>div{
+            height: 145px;
+            margin-top: -145px;
+            background: url("/img/icon/s18.png") no-repeat;
+            background-size: cover;
+        }
+        .s19>div{
+            height: 152px;
+            margin-top: -152px;
+            background: url("/img/icon/s19.png") no-repeat;
+            background-size: cover;
         }
         div.custom-tooltip span {
             position: absolute;
@@ -81,22 +177,22 @@
                 "default": {
                     "firstScene": "panorama",
                     "sceneFadeDuration": 1500,
-                     "hotSpotDebug": false,
+                    "hotSpotDebug": true,
                     "showControls":false,
                     "hfov": hfov, //缩放
                     "autoLoad":true
                 },
                 "scenes": {
                     "panorama":{
-                        "pitch":-44.293,
-                        "yaw": 3.530,
+                        "pitch":-25.15,
+                        "yaw": -6.17,
                         "panorama": "/img/panoramaViewImg/pan1.jpg",
                         "hotSpots":getHotSpotSlot()
                     },
                     "panorama1":{
-                        "pitch":-44.293,
-                        "yaw": 3.530,
-                        "panorama": "/img/panoramaViewImg/pan2.jpg",
+                        "pitch":-25.15,
+                        "yaw": -6.17,
+                        "panorama": "/img/panoramaViewImg/pan3.jpg",
                     }
                 }
             });
@@ -123,7 +219,7 @@
             let div1 = document.createElement('div');
             div1.classList.add('custom-tooltip-div1');
             span.innerHTML = args;
-            hotSpotDiv.appendChild(span);
+            //hotSpotDiv.appendChild(span);
             hotSpotDiv.appendChild(div1);
             span.style.width = span.scrollWidth - 10 + 'px';
             span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
@@ -140,116 +236,132 @@
                 "spot1": [
                     {
                         "id":"spot-type-1",
-                        "pitch": -62.92,
-                        "yaw": -18.28,
-                        "cssClass": "custom-hotspot,spot1,park",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "北庭园"
+                        "pitch": -24.14,
+                        "yaw": -0.58,
+                        "cssClass": "custom-hotspot,s1",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
-                        "pitch": -25.06,
-                        "yaw": -73.21,
-                        "cssClass": "custom-hotspot,spot1,park",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "天地园"
+                        "pitch": -22.95,
+                        "yaw": 7.02,
+                        "cssClass": "custom-hotspot,s2",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
-                        "pitch": -54.02,
-                        "yaw": -59.32,
-                        "cssClass": "custom-hotspot,spot1",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "文化中心"
+                        "pitch": 11.04,
+                        "yaw": -11,
+                        "cssClass": "custom-hotspot,s4",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -38.05,
                         "yaw": -143.87,
-                        "cssClass": "custom-hotspot,spot1",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "豪威酒店"
+                        "cssClass": "custom-hotspot,s5",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
-                        "pitch": -19.96,
-                        "yaw": 23.46,
-                        "cssClass": "custom-hotspot,spot1",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "住宅用地"
+                        "pitch": -8.27,
+                        "yaw": -61.67,
+                        "cssClass": "custom-hotspot,s6",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -21.12,
                         "yaw": 56.43,
-                        "cssClass": "custom-hotspot,spot1,park",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "植物园"
+                        "cssClass": "custom-hotspot,s7",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -43.88,
                         "yaw": 137.53,
-                        "cssClass": "custom-hotspot,spot1",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "北庭商贸城"
+                        "cssClass": "custom-hotspot,s8",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
-                        "pitch": -25.31,
-                        "yaw": -14.45,
-                        "cssClass": "custom-hotspot,spot1,hospital",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "积善堂中医医院"
+                        "pitch": -47.54,
+                        "yaw": -8.48,
+                        "cssClass": "custom-hotspot,s9",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
-                        "pitch": -39.92,
-                        "yaw": -53.74,
-                        "cssClass": "custom-hotspot,spot1,hospital",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "县妇幼保健站"
+                        "pitch": -10.08,
+                        "yaw": -45.74,
+                        "cssClass": "custom-hotspot,s10",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
-                        "pitch": -42.41,
-                        "yaw": 76.01,
-                        "cssClass": "custom-hotspot,spot1,hospital",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "县医院"
+                        "pitch":  7.63,
+                        "yaw": -8.55,
+                        "cssClass": "custom-hotspot,s11",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -26.34,
                         "yaw": 110.91,
-                        "cssClass": "custom-hotspot,spot1,hospital",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "县中医医院"
+                        "cssClass": "custom-hotspot,s12",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -36.79,
                         "yaw": 77.91,
-                        "cssClass": "custom-hotspot,spot1",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "吉木萨尔县政府"
+                        "cssClass": "custom-hotspot,s13",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -17.99,
                         "yaw": 110.96,
-                        "cssClass": "custom-hotspot,spot1",
-                        "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "吉木萨尔镇政府"
+                        "cssClass": "custom-hotspot,s14",
+                        "createTooltipFunc": hotspot
                     },
                     {
                         "id":"spot-type-1",
                         "pitch": -24.65,
                         "yaw": 28.80,
-                        "cssClass": "custom-hotspot,spot1",
+                        "cssClass": "custom-hotspot,s15",
                         "createTooltipFunc": hotspot,
-                        "createTooltipArgs": "农贸市场"
-                    }],
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -24.65,
+                        "yaw": 28.80,
+                        "cssClass": "custom-hotspot,s16",
+                        "createTooltipFunc": hotspot,
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -24.65,
+                        "yaw": 28.80,
+                        "cssClass": "custom-hotspot,s17",
+                        "createTooltipFunc": hotspot,
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -24.65,
+                        "yaw": 28.80,
+                        "cssClass": "custom-hotspot,s18",
+                        "createTooltipFunc": hotspot,
+                    },
+                    {
+                        "id":"spot-type-1",
+                        "pitch": -60.15,
+                        "yaw": -23.55,
+                        "cssClass": "custom-hotspot,s19",
+                        "createTooltipFunc": hotspot,
+                    }
+
+                    ],
                 "spot2" : [
                     {
                         "id":"spot-type-2",
@@ -368,21 +480,8 @@
             if(slot){
                 return object[slot];
             }else{
-                let spot=[
-                    {
-                        "id":"logo",
-                        "pitch": -27.75,
-                        "yaw": 7.52,
-                        "cssClass": "custom-tooltip",
-                        //"createTooltipFunc": logospot,
-                        "createTooltipArgs": "logo"
-                    }
-                ];
-                //页面初始化时slot为undefined，此时将logo加入热点中
-                // for(let obj in object){
-                //     spot = spot.concat(object[obj]);
-                // }
-                return spot;
+
+                return object["spot1"];
             }
         }
     </script>
