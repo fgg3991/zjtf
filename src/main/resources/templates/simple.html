@@ -1,7 +1,4 @@
 <style>
-    .navigate27{
-        transform:translateY(-25px);
-    }
     .icon-bg{
         width: 40px;
         height: 40px;
@@ -30,7 +27,7 @@
             "default": {
                 "firstScene": Object.keys(scene)[0],
                 "sceneFadeDuration": 1000,
-                //"hotSpotDebug": true,
+                "hotSpotDebug": true,
                 "hfov": roomfov, //缩放
                 "maxHfov": 80,
                 "showControls":false,
@@ -44,206 +41,991 @@
             {
                 "A": {
                     "livingRoom": {
-                        "title": "客厅",
-                        "pitch": -18.24,
-                        "yaw": -72.47,
-                        "panorama": "/img/simpleImg/A/livingRoom.jpg"
+                        "pitch": -1.239,
+                        "yaw": -90.136,
+                        "panorama": "/img/simpleImg/A/livingRoom.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": 3.867,
+                                "yaw": 7.820,
+                                "type": "scene",
+                                "sceneId": "bedRoom3",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"bedRoom3",
+                                "touchHandlerArgs":"bedRoom3",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧"
+                            },
+                            {
+                                "pitch": -9.701,
+                                "yaw": -6.295,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧",
+                            },
+                            {
+                                "pitch":  -4.055,
+                                "yaw": 0.671,
+                                "type": "scene",
+                                "sceneId": "bedRoom2",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom2",
+                                "touchHandlerArgs":"bedRoom2",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            },
+                            {
+                                "pitch": 1.922,
+                                "yaw":   -291.042,
+                                "type": "scene",
+                                "sceneId": "kitchen",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"kitchen",
+                                "touchHandlerArgs":"kitchen",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "厨房"
+                            },
+                            {
+                                "pitch": 1.46,
+                                "yaw":  -87.437,
+                                "type": "scene",
+                                "sceneId": "balcony",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"balcony",
+                                "touchHandlerArgs":"balcony",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "阳台"
+                            },
+                            {
+                                "pitch": -5.437,
+                                "yaw": 13.419,
+                                "type": "scene",
+                                "sceneId": "toilet",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"toilet",
+                                "touchHandlerArgs":"toilet",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客卫"
+                            }
+                        ]
                     },
                     "bedRoom1": {
-                        "title": "主卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/A/bedRoom1.jpg"
+                        "panorama": "/img/simpleImg/A/bedRoom1.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -2.095,
+                                "yaw":  -82.992,
+                                "type": "scene",
+                                "sceneId": "balcony",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"balcony",
+                                "touchHandlerArgs":"balcony",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "阳台"
+                            },
+                            {
+                                "pitch": -1.666,
+                                "yaw": 101.22,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -9.5,
+                                "yaw": 92.081,
+                                "type": "scene",
+                                "sceneId": "toilet",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"toilet",
+                                "touchHandlerArgs":"toilet",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客卫"
+                            }
+                        ]
                     },
                     "bedRoom2": {
-                        "title": "次卧",
                         "hfov": roomfov, //缩放
-                        "pitch": -3,
-                        "yaw": 0,
-                        "panorama": "/img/simpleImg/A/bedRoom2.jpg"
+                        "pitch":-0.666,
+                        "yaw": -0.833,
+                        "panorama": "/img/simpleImg/A/bedRoom2.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -2.09,
+                                "yaw": 101.537,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -2.09,
+                                "yaw": 80.203,
+                                "type": "scene",
+                                "sceneId": "toilet1",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"toilet1",
+                                "touchHandlerArgs":"toilet1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卫"
+                            }
+                        ]
                     },
                     "bedRoom3": {
-                        "title": "次卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/A/bedRoom3.jpg"
+                        "panorama": "/img/simpleImg/A/bedRoom3.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -4.385,
+                                "yaw": -116.614,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅",
+                            }
+                        ]
                     },
                     "kitchen": {
-                        "title": "厨房",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/A/kitchen.jpg"
+                        "panorama": "/img/simpleImg/A/kitchen.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": 2.626,
+                                "yaw": -89.121,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "toilet": {
-                        "title": "卫生间",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/A/toilet.jpg"
+                        "panorama": "/img/simpleImg/A/toilet.jpg",
+                        "hotSpots":[
+                            {
+                                "pitch": -7.180,
+                                "yaw": -196.161,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -21.833,
+                                "yaw": -178.771,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧"
+                            }
+                        ]
                     },
                     "toilet1": {
-                        "title": "卫生间",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/A/toilet1.jpg"
+                        "panorama": "/img/simpleImg/A/toilet1.jpg",
+                        "hotSpots":[
+                            {
+                                "pitch": -1.637,
+                                "yaw": 180.635,
+                                "type": "scene",
+                                "sceneId": "bedRoom2",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom2",
+                                "touchHandlerArgs":"bedRoom2",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            }
+                        ]
                     },
                     "balcony": {
-                        "title": "阳台",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/A/balcony.jpg"
+                        "panorama": "/img/simpleImg/A/balcony.jpg",
+                        "hotSpots":[
+                            {
+                                "pitch": -4.569,
+                                "yaw": -180.958,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     }
                 },
                 "B": {
-                    "livingRoom": {
-                        "title": "客厅",
+                    "entrance": {
+                        "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/livingRoom.jpg"
+                        "panorama": "/img/simpleImg/B/entrance.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -3.400,
+                                "yaw": -2.970,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
+                    },
+                    "livingRoom": {
+                        "pitch": -0.5,
+                        "yaw": 0.333,
+                        "panorama": "/img/simpleImg/B/livingRoom.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -0.630,
+                                "yaw": -269.199,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            },
+                            {
+                                "pitch": -6.520,
+                                "yaw": -274.090,
+                                "type": "scene",
+                                "sceneId": "bedRoom2",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"bedRoom2",
+                                "touchHandlerArgs":"bedRoom2",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧",
+                            },
+                            {
+                                "pitch":  -3.253,
+                                "yaw": -82.709,
+                                "type": "scene",
+                                "sceneId": "bedRoom3",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"bedRoom3",
+                                "touchHandlerArgs":"bedRoom3",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧"
+                            },
+                            {
+                                "pitch": -1.303,
+                                "yaw":   151.145,
+                                "type": "scene",
+                                "sceneId": "kitchen",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"kitchen",
+                                "touchHandlerArgs":"kitchen",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "厨房"
+                            },
+                            {
+                                "pitch": -2.5,
+                                "yaw":  2.734,
+                                "type": "scene",
+                                "sceneId": "balcony",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"balcony",
+                                "touchHandlerArgs":"balcony",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "阳台"
+                            },
+                            {
+                                "pitch": -1.228,
+                                "yaw": -106.406,
+                                "type": "scene",
+                                "sceneId": "entrance",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"entrance",
+                                "touchHandlerArgs":"entrance",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "电梯"
+                            },
+                            {
+                                "pitch":  -3.606,
+                                "yaw": 101.398,
+                                "type": "scene",
+                                "sceneId": "toilet1",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"toilet1",
+                                "touchHandlerArgs":"toilet1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客卫"
+                            }
+                        ]
                     },
                     "bedRoom1": {
-                        "title": "主卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/bedRoom1.jpg"
+                        "panorama": "/img/simpleImg/B/bedRoom1.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -2.789,
+                                "yaw": -244.623,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -1.559,
+                                "yaw": -264.947,
+                                "type": "scene",
+                                "sceneId": "toilet",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"toilet",
+                                "touchHandlerArgs":"toilet",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卫",
+                            }
+                        ]
                     },
                     "bedRoom2": {
-                        "title": "次卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/bedRoom2.jpg"
+                        "panorama": "/img/simpleImg/B/bedRoom2.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -2.231,
+                                "yaw": -259.999,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch":  -0.206,
+                                "yaw":-86.534,
+                                "type": "scene",
+                                "sceneId": "balcony",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"balcony",
+                                "touchHandlerArgs":"balcony",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "阳台",
+                            }
+                        ]
                     },
                     "bedRoom3": {
-                        "title": "次卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/bedRoom3.jpg"
-                    },
-                    "bedRoom4": {
-                        "title": "次卧",
-                        "hfov": roomfov, //缩放
-                        "pitch": -3,
-                        "yaw": 0,
-                        "panorama": "/img/simpleImg/B/bedRoom4.jpg"
+                        "panorama": "/img/simpleImg/B/bedRoom3.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -4.422,
+                                "yaw": -103.590,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "kitchen": {
-                        "title": "厨房",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/kitchen.jpg"
+                        "panorama": "/img/simpleImg/B/kitchen.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -6.202,
+                                "yaw": -128.064,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "toilet": {
-                        "title": "卫生间",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/toilet.jpg"
+                        "panorama": "/img/simpleImg/B/toilet.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -10.858,
+                                "yaw": -240.245,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -2.5,
+                                "yaw": -186.472,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            }
+                        ]
                     },
                     "toilet1": {
-                        "title": "卫生间",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/toilet1.jpg"
-                    },
-                    "entrance": {
-                        "title": "玄关",
-                        "hfov": roomfov, //缩放
-                        "pitch": -3,
-                        "yaw": 0,
-                        "panorama": "/img/simpleImg/B/entrance.jpg"
+                        "panorama": "/img/simpleImg/B/toilet1.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -6.139,
+                                "yaw": -180.547,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "balcony": {
-                        "title": "阳台",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/B/balcony.jpg"
+                        "panorama": "/img/simpleImg/B/balcony.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -7.722,
+                                "yaw": -171.275,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     }
                 },
                 "C": {
+                    "entrance": {
+                        "hfov": roomfov, //缩放
+                        "pitch": -0.496,
+                        "yaw": -2,
+                        "panorama": "/img/simpleImg/C/entrance.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -3.400,
+                                "yaw": -2.970,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
+                    },
                     "livingRoom": {
-                        "title": "客厅",
-                        "pitch": -20.10,
-                        "yaw": 35.87,
-                        "panorama": "/img/simpleImg/C/livingRoom.jpg"
+                        "pitch": -7.60,
+                        "yaw": 0,
+                        "panorama": "/img/simpleImg/C/livingRoom.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": 1.167,
+                                "yaw": -271.616,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            },
+                            {
+                                "pitch": -16.55,
+                                "yaw": -274.090,
+                                "type": "scene",
+                                "sceneId": "bedRoom2",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"bedRoom2",
+                                "touchHandlerArgs":"bedRoom2",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧",
+                            },
+                            {
+                                "pitch":  0.706,
+                                "yaw": -261.900,
+                                "type": "scene",
+                                "sceneId": "bookRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"bookRoom",
+                                "touchHandlerArgs":"bookRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "书房"
+                            },
+                            {
+                                "pitch":  -3.545,
+                                "yaw": 276.323,
+                                "type": "scene",
+                                "sceneId": "bedRoom3",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"bedRoom3",
+                                "touchHandlerArgs":"bedRoom3",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "次卧"
+                            },
+                            {
+                                "pitch": -1.303,
+                                "yaw":   151.145,
+                                "type": "scene",
+                                "sceneId": "kitchen",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"kitchen",
+                                "touchHandlerArgs":"kitchen",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "厨房"
+                            },
+                            {
+                                "pitch": -1.22,
+                                "yaw":  2.321,
+                                "type": "scene",
+                                "sceneId": "balcony",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"balcony",
+                                "touchHandlerArgs":"balcony",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "阳台"
+                            },
+                            {
+                                "pitch": -1.33,
+                                "yaw": -106.332,
+                                "type": "scene",
+                                "sceneId": "entrance",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"entrance",
+                                "touchHandlerArgs":"entrance",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "电梯"
+                            },
+                            {
+                                "pitch":  -8.878,
+                                "yaw": 101.398,
+                                "type": "scene",
+                                "sceneId": "toilet1",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"toilet1",
+                                "touchHandlerArgs":"toilet1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客卫"
+                            }
+                        ]
                     },
                     "bedRoom1": {
-                        "title": "主卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/bedRoom1.jpg"
+                        "panorama": "/img/simpleImg/C/bedRoom1.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -2.789,
+                                "yaw": -244.623,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -6.322,
+                                "yaw": -282.443,
+                                "type": "scene",
+                                "sceneId": "toilet",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"toilet",
+                                "touchHandlerArgs":"toilet",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卫",
+                            },
+                            {
+                                "pitch": -11.811,
+                                "yaw": -259.594,
+                                "type": "scene",
+                                "sceneId": "bookRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bookRoom",
+                                "touchHandlerArgs":"bookRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "书房",
+                            }
+                        ]
                     },
                     "bedRoom2": {
-                        "title": "次卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/bedRoom2.jpg"
+                        "panorama": "/img/simpleImg/C/bedRoom2.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -2.231,
+                                "yaw": -259.999,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "right-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch":  -0.206,
+                                "yaw":-86.534,
+                                "type": "scene",
+                                "sceneId": "balcony",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"balcony",
+                                "touchHandlerArgs":"balcony",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "阳台",
+                            }
+                        ]
                     },
                     "bedRoom3": {
-                        "title": "次卧",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/bedRoom3.jpg"
+                        "panorama": "/img/simpleImg/C/bedRoom3.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -4.422,
+                                "yaw": -103.590,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            },
+                            {
+                                "pitch": -4.422,
+                                "yaw": 269.153,
+                                "type": "scene",
+                                "sceneId": "entrance",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"entrance",
+                                "touchHandlerArgs":"entrance",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "电梯"
+                            }
+                        ]
                     },
                     "bookRoom": {
-                        "title": "书房",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/bookRoom.jpg"
+                        "panorama": "/img/simpleImg/C/bookRoom.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch":-2.999,
+                                "yaw": -84.313,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            },
+                            {
+                                "pitch":-21.236,
+                                "yaw": -85.313,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "kitchen": {
-                        "title": "厨房",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/kitchen.jpg"
+                        "panorama": "/img/simpleImg/C/kitchen.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -6.202,
+                                "yaw": -128.064,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "toilet": {
-                        "title": "卫生间",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/toilet.jpg"
+                        "panorama": "/img/simpleImg/C/toilet.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch":-4.3333,
+                                "yaw": -310.695,
+                                "type": "scene",
+                                "sceneId": "bedRoom1",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"bedRoom1",
+                                "touchHandlerArgs":"bedRoom1",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "主卧"
+                            }
+                        ]
                     },
                     "toilet1": {
-                        "title": "卫生间",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/toilet1.jpg"
-                    },
-                    "entrance": {
-                        "title": "玄关",
-                        "hfov": roomfov, //缩放
-                        "pitch": -3,
-                        "yaw": 0,
-                        "panorama": "/img/simpleImg/C/entrance.jpg"
+                        "panorama": "/img/simpleImg/C/toilet1.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -6.139,
+                                "yaw": -180.547,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "left-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     },
                     "balcony": {
-                        "title": "阳台",
                         "hfov": roomfov, //缩放
                         "pitch": -3,
                         "yaw": 0,
-                        "panorama": "/img/simpleImg/C/balcony.jpg"
+                        "panorama": "/img/simpleImg/C/balcony.jpg",
+                        "hotSpots": [
+                            {
+                                "pitch": -7.722,
+                                "yaw": -171.275,
+                                "type": "scene",
+                                "sceneId": "livingRoom",
+                                "cssClass": "forward-hotspot",
+                                "clickHandlerArgs":"livingRoom",
+                                "touchHandlerArgs":"livingRoom",
+                                "clickHandlerFunc": hotspotClick,
+                                "touchHandlerFunc": hotspotTouch,
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "客厅"
+                            }
+                        ]
                     }
                 }
             };
         let simple =$(".room_active").attr("scene");
         return object[simple];
+    }
+    function hotspot(hotSpotDiv,args){
+        hotSpotDiv.classList.add('simple-hotspot');
+        let div = document.createElement('div');
+        div.innerHTML = args;
+        div.className = "icon-text";
+        hotSpotDiv.style.width = div.scrollWidth - 15 + 'px';
+        hotSpotDiv.appendChild(div);
+        let bg = document.createElement('div');
+        bg.className ="icon-bg";
+        hotSpotDiv.appendChild(bg);
+    }
+    function hotspotClick(link,args){
+        let nav =$(".simple-active>div[scene="+args+"]");
+        nav.siblings().css("opacity","0.5");
+        nav.css("opacity","1");
+        $('.simple-active').scrollLeft(nav.index()*76);
+    }
+    function hotspotTouch(link,args){
+        console.log(args);
+        let nav =$(".simple-active>div[scene="+args+"]");
+        nav.siblings().css("opacity","0.5");
+        nav.css("opacity","1");
+        $('.simple-active').scrollLeft(nav.index()*76);
     }
 
 </script>

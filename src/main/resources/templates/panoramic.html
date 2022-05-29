@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"  name="viewport" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover"  name="viewport" />
     <title>鑫源·星河湾</title>
     <link rel="stylesheet" href="/css/pannellum.css"/>
     <link rel="stylesheet" href="/css/panoramic.css"/>
@@ -64,10 +64,12 @@
             position: absolute;
             left: 0;
             bottom: 150px;
-            background: url(/img/pan-control.png) no-repeat;
+            background: url(/img/pan-bg.png) repeat;
             background-size: 100% 100%;
-            padding: 10px 0 10px 0;
-            height: 60px;
+            padding: 5px 0 5px 0;
+            height: 53px;
+            display: flex;
+            align-items: center;
         }
         .pan-tiny img{
             width: 83px;
@@ -78,14 +80,11 @@
             position: absolute;
             left: 0;
             bottom: 150px;
-            background: url(/img/pan-control.png) no-repeat;
+            background: url(/img/pan-bg.png) repeat;
             background-size: 100% 100%;
-            padding: 10px 0 10px 0;
-            height: 60px;
-        }
-        .simple-tiny img{
-            width: 83px;
-            opacity: 0.5;
+            padding: 5px 0 5px 0;
+            height: 53px;
+            align-items: center;
         }
         .pan-tiny1{
             position: absolute;
@@ -93,19 +92,22 @@
             bottom: 150px;
         }
         .pan-tiny1 img{
-            width: 54px;
+            width: 40px;
+            height: 63px;
         }
         .pan-item{
+            cursor: pointer;
+            background-position: center !important;
             opacity: 0.5;
-            background-position: center;
-            border: 3px solid white;
             width: 70px;
-            height: 50px;
+            height: 47px;
+            border: 3px solid white;
             display: inline-block;
         }
         .pan-item p{
             position: relative;
-            top: 29px;
+            font-size: 15px;
+            top: 26px;
             margin: 0;
             color: white;
             text-align: center;
@@ -120,8 +122,32 @@
             white-space: nowrap;
         }
         .pan-control{
+            cursor: pointer;
             width: 50px;
-            display: inline-block
+            height: 63px;
+            background: url(/img/pan-control2.png) no-repeat;
+            background-size: 100% 100%;
+            margin-right: -50px;
+            display: inline-block;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-user-select: none;
+            -moz-user-focus: ignore;
+            -moz-user-select: none;
+        }
+        .hotspot-active{
+            background-color: #a59165c2 !important;
+        }
+        .menu-div1{
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-user-select: none;
+            -moz-user-focus: ignore;
+            -moz-user-select: none;
+        }
+        .hotspot-controller{
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-user-select: none;
+            -moz-user-focus: ignore;
+            -moz-user-select: none;
         }
 
     </style>
@@ -133,7 +159,7 @@
     </div>
     <div class="panoramic-div" id="panorama"></div>
     <div class="menu-div">
-        <div class="panorama-menu-control" >
+        <div class="panorama-menu-control" style="cursor: pointer;" >
             <img src="/img/menu-control.png" />
         </div>
         <!--<div class="panorama-menu-main">-->
@@ -144,23 +170,23 @@
                 <i style="background: url(/img/menu1.png) no-repeat; background-size: 100%;"></i><span>全景鸟瞰</span>
             </div>
             <div class="panorama-menu menu-area nav-page" link="AreaMap" >
-                <div class="menu-content menu-simple-content" style="width:153px;height: 26px; border-radius: 45px; padding: 0 10px;bottom: 67px;">
-                    <div class="menu-text nav-panorama area_list" style="margin: 0">
-                        <div class="area_item item_active" link="2" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">交通</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="area_item" link="0">教育</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="area_item" link="1">商业</div>&nbsp;<div class="area_item_line">|</div>
+                <div class="menu-content menu-simple-content" style="width:150px;height: 26px; border-radius: 45px; padding: 0 10px;bottom: 67px;">
+                    <div class="menu-text nav-panorama area_list" style="margin: 0;transform: translate(0,-2px);">
+                        <div class="area_item item_active" link="0" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">交通</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="area_item" link="1">教育</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="area_item" link="2">商业</div>&nbsp;<div class="area_item_line">|</div>
                         <div class="area_item" link="3" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">医疗</div>
                     </div>
                 </div>
                 <i style="background: url(/img/menu2.png) no-repeat; background-size: 100%;"></i><span>互动区位</span>
             </div>
             <div class="panorama-menu menu-park nav-page" link="Park"  >
-                <div class="menu-content menu-simple-content" style="width:190px;height: 26px; border-radius: 45px; padding: 0 10px;bottom: 67px;margin-left: -26vw">
-                    <div class="menu-text nav-panorama area_list" style="margin: 0">
-                        <div class="park_item item_active" link="2" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">视频1</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="park_item" link="0">视频2</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="park_item" link="1">视频3</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="park_item" link="3" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">视频4</div>
+                <div class="menu-content menu-simple-content" style="width:260px;height: 26px; border-radius: 45px; padding: 0 10px;bottom: 67px;margin-left: -35vw">
+                    <div class="menu-text nav-panorama area_list" style="margin: 0;transform: translate(0,-2px);">
+                        <div class="park_item item_active" link="0" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">项目正门</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="park_item" link="1">儿童乐园</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="park_item" link="2">商业街区</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="park_item" link="3" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">中庭景观</div>
                     </div>
                 </div>
                 <i style="background: url(/img/menu3.png) no-repeat; background-size: 100%;"></i><span>园林景观</span>
@@ -172,79 +198,87 @@
                 <i style="background: url(/img/menu4.png) no-repeat; background-size: 100%;"></i><span>户型鉴赏</span>
             </div>
             <div class="panorama-menu menu-park nav-page" link="Simple" link1="Sim">
-                <div class="menu-content menu-simple-content" style="width: 84vw; height: 26px; border-radius: 45px; padding: 0px 10px; bottom: 67px; margin-left: -76vw;">
-                    <div class="menu-text nav-panorama area_list" style="margin: 0">
-                        <div class="room_item room_active" scene="A" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">A1【173.78㎡】</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="room_item" scene="B">B【138.08㎡】</div>&nbsp;<div class="area_item_line">|</div>
-                        <div class="room_item" scene="C" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">C1【146.25㎡】</div>
+                <div class="menu-content menu-simple-content" style="width: 320px; height: 26px; border-radius: 45px; padding: 0 10px; bottom: 67px; margin-left: -297px;">
+                    <div class="menu-text nav-panorama area_list" style="margin: 0;transform: translate(0,-2px);">
+                        <div class="room_item room_active" scene="A" style="border-radius: 45px 0 0 45px;padding-left: 6px;margin-left: -15px;">A1【130.08㎡】</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="room_item" scene="B">B【142.10㎡】</div>&nbsp;<div class="area_item_line">|</div>
+                        <div class="room_item" scene="C" style="border-radius: 0 45px 45px 0;padding-right: 6px;margin-right: -23px;">C1【147.51㎡】</div>
                     </div>
                 </div>
                 <i style="background: url(/img/menu5.png) no-repeat; background-size: 100%;"></i><span>样板间</span>
             </div>
         <!--</div>-->
     </div>
-    <div class="menu-div1">
+    <div class="menu-div1" style="cursor: pointer;">
         <img src="/img/menu-control1.png" style="width: 56px;">
     </div>
     <div onclick="window.location.href ='tel:02835018888'" class="content-tel">联系电话：028-35018888</div>
     <div class="content-div" >
         <div class="pan-tiny">
-            <div class="pan-item pan-change" scene="panorama" style="background: url(/img/panoramaViewImg/pan1-tiny.jpg) no-repeat; opacity: 1">
-                <p>白天</p>
-            </div>
-            <div class="pan-item pan-change" scene="panorama1" style="background: url(/img/panoramaViewImg/pan2-tiny.jpg) no-repeat;">
-                <p>晚上</p>
+            <div style="display: inline-block">
+                <div class="pan-item pan-change" scene="panorama" style="background: url(/img/panoramaViewImg/pan1-tiny.jpg) no-repeat; opacity: 1">
+                    <p>白天鸟瞰</p>
+                </div>
+                <div class="pan-item pan-change" scene="panorama1" style="background: url(/img/panoramaViewImg/pan2-tiny.jpg) no-repeat;">
+                    <p>夜景鸟瞰</p>
+                </div>
             </div>
             <div class="pan-control"></div>
         </div>
         <div class="simple-tiny">
-            <div class="simple-nav simple-a">
+            <div class="simple-nav simple-a simple-active">
                 <div class="pan-item pan-change" scene="livingRoom" style="background: url(/img/simpleImg/A/livingRoom-tiny.jpg);opacity: 1">
                     <p>客厅</p>
                 </div>
                 <div class="pan-item pan-change" scene="balcony" style="background: url(/img/simpleImg/A/balcony-tiny.jpg) no-repeat;">
                     <p>阳台</p>
                 </div>
-                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/simpleImg/A/bedRoom1-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/simpleImg/A/bedRoom1-tiny.jpg) no-repeat;">
+                    <p>主卧</p>
                 </div>
-                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/simpleImg/A/bedRoom2-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/simpleImg/A/bedRoom2-tiny.jpg) no-repeat;">
+                    <p>次卧</p>
                 </div>
                 <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/simpleImg/A/bedRoom3-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                    <p>次卧</p>
                 </div>
                 <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/simpleImg/A/kitchen-tiny.jpg) no-repeat;">
                     <p>厨房</p>
                 </div>
                 <div class="pan-item pan-change" scene="toilet" style="background: url(/img/simpleImg/A/toilet-tiny.jpg) no-repeat;">
-                    <p>主卫</p>
+                    <p>客卫</p>
                 </div>
                 <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/simpleImg/A/toilet1-tiny.jpg) no-repeat;">
-                    <p>次卫</p>
+                    <p>主卫</p>
                 </div>
             </div>
             <div class="simple-nav simple-b" style="display: none;">
-                <div class="pan-item pan-change" scene="livingRoom" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;opacity: 1">
+                <div class="pan-item pan-change" scene="livingRoom" style="background: url(/img/simpleImg/B/livingRoom-tiny.jpg) no-repeat;opacity: 1">
                     <p>客厅</p>
                 </div>
-                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                <div class="pan-item pan-change" scene="balcony" style="background: url(/img/simpleImg/B/balcony-tiny.jpg) no-repeat;">
+                    <p>阳台</p>
                 </div>
-                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/simpleImg/B/bedRoom1-tiny.jpg) no-repeat;">
+                    <p>主卧</p>
                 </div>
-                <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/simpleImg/B/bedRoom2-tiny.jpg) no-repeat;">
+                    <p>次卧</p>
                 </div>
-                <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/simpleImg/B/bedRoom3-tiny.jpg) no-repeat;">
+                    <p>次卧</p>
+                </div>
+                <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/simpleImg/B/kitchen-tiny.jpg) no-repeat;">
                     <p>厨房</p>
                 </div>
-                <div class="pan-item pan-change" scene="toilet" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
+                <div class="pan-item pan-change" scene="toilet" style="background: url(/img/simpleImg/B/toilet-tiny.jpg) no-repeat;">
                     <p>主卫</p>
                 </div>
-                <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/panoramaViewImg/pan-tiny.jpg) no-repeat;">
-                    <p>次卫</p>
+                <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/simpleImg/B/toilet1-tiny.jpg) no-repeat;">
+                    <p>客卫</p>
+                </div>
+                <div class="pan-item pan-change" scene="entrance" style="background: url(/img/simpleImg/B/entrance-tiny.jpg) no-repeat;">
+                    <p>入户</p>
                 </div>
             </div>
             <div class="simple-nav simple-c" style="display: none;">
@@ -255,19 +289,16 @@
                     <p>阳台</p>
                 </div>
                 <div class="pan-item pan-change" scene="bedRoom1" style="background: url(/img/simpleImg/C/bedRoom1-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                    <p>主卧</p>
                 </div>
                 <div class="pan-item pan-change" scene="bedRoom2" style="background: url(/img/simpleImg/C/bedRoom2-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                    <p>次卧</p>
                 </div>
                 <div class="pan-item pan-change" scene="bedRoom3" style="background: url(/img/simpleImg/C/bedRoom3-tiny.jpg) no-repeat;">
-                    <p>卧室</p>
+                    <p>次卧</p>
                 </div>
                 <div class="pan-item pan-change" scene="bookRoom" style="background: url(/img/simpleImg/C/bookRoom-tiny.jpg) no-repeat;">
                     <p>书房</p>
-                </div>
-                <div class="pan-item pan-change" scene="entrance" style="background: url(/img/simpleImg/C/entrance-tiny.jpg) no-repeat;">
-                    <p>入户</p>
                 </div>
                 <div class="pan-item pan-change" scene="kitchen" style="background: url(/img/simpleImg/C/kitchen-tiny.jpg) no-repeat;">
                     <p>厨房</p>
@@ -276,7 +307,10 @@
                     <p>主卫</p>
                 </div>
                 <div class="pan-item pan-change" scene="toilet1" style="background: url(/img/simpleImg/C/toilet1-tiny.jpg) no-repeat;">
-                    <p>次卫</p>
+                    <p>客卫</p>
+                </div>
+                <div class="pan-item pan-change" scene="entrance" style="background: url(/img/simpleImg/C/entrance-tiny.jpg) no-repeat;">
+                    <p>入户</p>
                 </div>
             </div>
             <div class="pan-control"></div>
@@ -289,6 +323,7 @@
         <div class="progess-percent">0%</div>
     </div>
     <div class="ad-img-container"></div>
+    <div class="hotspot-controller" style="cursor: pointer;position: absolute;left: 0;top: 30vh;padding: 2px 8px 2px 0;background-color: rgba(0,0,0,0.5);border-radius: 0 45px 45px 0;color: white;font-size: 14px;">周边配套</div>
 <!--    <img id="ad-img" src="/img/ad.jpg">-->
     <div style="display: none">
         <p id="appId" th:text="${appid}"></p>
@@ -359,11 +394,11 @@
         // wbmg_MusicManager.play( 'background' );
         //菜单收缩动画
         $(".panorama-menu-control").click(function () {
-            $(".menu-div").animate({"left":"-780px"},1000);
+            $(".menu-div").animate({"left":"-880px"},1000);
             $(".menu-div1").animate({"left":"0"},1000);
         });
         $(".menu-div1").click(function () {
-            $(".menu-div1").animate({"left":"-60px"},1000);
+            $(".menu-div1").animate({"left":"-70px"},1000);
             $(".menu-div").animate({"left":"0"},1000);
         });
         //全景图收缩动画
@@ -392,7 +427,7 @@
             }
             if($(this).attr("link1") === "Sim"){
                 $(".pan-tiny1").show();
-                $(".simple-tiny").show();
+                $(".simple-tiny").css("display","flex");
                 simpleAnimateShow();
             }else{
                 $(".pan-tiny1").hide();
@@ -417,6 +452,22 @@
             $(this).siblings().css("opacity","0.5");
             $(this).css("opacity","1");
             viewer.loadScene($(this).attr("scene"));
+        });
+        //加载热点
+        $(".hotspot-controller").click(function () {
+            if($(this).hasClass("hotspot-active")){
+                $(this).removeClass("hotspot-active");
+                let oldSpot =getHotSpotSlot();
+                for(let i=0;i<oldSpot.length;i++){
+                    viewer.removeHotSpot(oldSpot[i].id);
+                }
+            }else{
+                $(this).addClass("hotspot-active");
+                let newSpot=getHotSpotSlot();
+                for(let i=0;i<newSpot.length;i++){
+                    viewer.addHotSpot(newSpot[i]);
+                }
+            }
         });
         $(".menu-simple").click(function () {
             $(".menu-others-content").hide();
@@ -451,6 +502,11 @@
         });
         //页面跳转
         $(".nav-page").click(function () {
+            if($(this).attr("link") === "PanoramaView"){
+                $(".hotspot-controller").show();
+            }else{
+                $(".hotspot-controller").hide();
+            }
             let url = "/get"+$(this).attr("link");
             menuClick (url);
         });
@@ -459,21 +515,28 @@
             $(".others-content-tel").hide();
             $(".menu-others-content").toggle("slow"); 
         });
-
+        //园林景观切换
+        $(".park_item").click(function (){
+            $(".park_item").removeClass("item_active");
+            $(this).addClass("item_active");
+            $(".vedio_item").hide();
+            $($(".vedio_item")[$(this).attr("link")]).show();
+        });
         //区位切换
         $(".area_item").click(function (){
             $(".area_item").removeClass("item_active");
             $(this).addClass("item_active");
-            $(".float_item").hide();
-            $($(".float_item")[$(this).attr("link")]).show();
+            $(".float_item").removeClass("float_active");
+            $($(".float_item")[$(this).attr("link")]).addClass("float_active");
         });
         //样板间切换
         $(".room_item").click(function (){
             $(".simple-nav").hide();
+            $(".simple-nav").removeClass("simple-active");
             switch ($(this).attr("scene")) {
-                case "A":$(".simple-a").show();break;
-                case "B":$(".simple-b").show();break;
-                case "C":$(".simple-c").show();break;
+                case "A":$(".simple-a").show(); $(".simple-a").addClass("simple-active");break;
+                case "B":$(".simple-b").show(); $(".simple-b").addClass("simple-active");break;
+                case "C":$(".simple-c").show(); $(".simple-c").addClass("simple-active");break;
             }
             $(".room_item").removeClass("room_active");
             $(this).addClass("room_active");

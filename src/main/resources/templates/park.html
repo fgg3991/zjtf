@@ -1,8 +1,43 @@
 <style>
-
+  video{
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      object-fit: fill;/*这里是关键*/
+      transform: translateY(-50%);
+      z-index: 9999999;
+  }
 </style>
 <div>
-    园林景观视频
+    <div class="heders">
+        <div class="vedio_item">
+             <video controls autoplay loop src="/videos/damen.mp4" ></video>
+        </div>
+        <div class="vedio_item" style="display: none">
+            <video controls autoplay loop src="/videos/etly.mp4" ></video>
+        </div>
+        <div class="vedio_item" style="display: none">
+            <video controls autoplay loop src="/videos/shangye.mp4" ></video>
+        </div>
+        <div class="vedio_item" style="display: none">
+            <video controls autoplay loop src="/videos/yxl.mp4" ></video>
+        </div>
+    </div>
 </div>
 <script>
+    $('.vedio_item').height(window.innerHeight);
+    $('.heders').height(window.innerHeight);
+    let isfull = false
+    $(window).resize(function() {
+        $('.vedio_item').attr('height', window.innerHeight);
+        $('.vedio_item').attr('width', window.innerWidth);
+        $('.heders').height(window.innerHeight);
+        isfull = !isfull
+        if(isfull){
+            $('.panoramic-div').css('z-index',99999)
+        }else{
+            $('.panoramic-div').css('z-index',99)
+        }
+    });
+
 </script>

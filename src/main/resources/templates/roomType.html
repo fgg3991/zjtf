@@ -55,14 +55,14 @@
             display: flex;
             justify-content: space-around;
             padding: 0 15px;
-            margin: 10px 0;
+            margin: 20px 0;
         }
         .room-div{
             margin-top: 15px;
         }
         .types{
-            width: 78px;
-            height: 34px;
+            width: 52px;
+            height: 26px;
         }
         .s1{
             background: url("/img/roomImg/A1.png");
@@ -169,8 +169,6 @@
                             <div class="types s1 active" onclick=roomImgChange(1)></div>
                             <div class="types s2" onclick=roomImgChange(2)></div>
                             <div class="types s3" onclick=roomImgChange(3)></div>
-                        </div>
-                        <div class="type-div">
                             <div class="types s4" onclick=roomImgChange(4)></div>
                             <div class="types s5" onclick=roomImgChange(5)></div>
                             <div class="types s6" onclick=roomImgChange(6)></div>
@@ -203,25 +201,29 @@
         </div>
     </div>
     <script>
-        let roomtype = 1; //户型序号
+        roomtype = 1; //户型序号
         $(document).ready(function(){
             let startY;
             $("body").on("touchstart", function(e) {
                 startY = e.originalEvent.changedTouches[0].pageY;
             });
             $("body").on("touchend", function(e) {
-                let moveEndY = e.originalEvent.changedTouches[0].pageY,
-                    X = moveEndY - startY;
-                //上滑
-                if ( X < 0 ) {
-                    $(".infobox").css({'display':'block'})
-                    let targetroom = $(".info");
-                    targetroom.removeClass("active");
-                    $(".info"+roomtype).addClass('active')
-                }
-                //下滑
-                else if ( X > 0 ) {
-                    $(".infobox").css({'display':'none'})
+                if($(".action").attr("link") === "RoomType") {
+                    let moveEndY = e.originalEvent.changedTouches[0].pageY,
+                        X = moveEndY - startY;
+                    //上滑
+                    if (X < 0) {
+                        $(".infobox").css({'display': 'block'})
+                        let targetroom = $(".info");
+                        targetroom.removeClass("active");
+                        $(".info" + roomtype).addClass('active')
+                        console.log("up");
+                    }
+                    //下滑
+                    else if (X > 0) {
+                        $(".infobox").css({'display': 'none'})
+                        console.log("down");
+                    }
                 }
             });
         });
